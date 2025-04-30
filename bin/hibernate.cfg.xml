@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-configuration SYSTEM "hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="connection.url">jdbc:mysql://localhost/bd-hibernate-uno-a-uno</property>
+    <property name="connection.username">root</property>
+    <property name="connection.password">root</property>
+    <property name="connection.pool_size">1</property>
+    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="show_sql">true</property>    <!-- en true muestra hql en consola-->
+    <!--Mapeo Entidades   -->
+
+
+
+  </session-factory>
+</hibernate-configuration>
