@@ -7,13 +7,5 @@
       <generator class="identity"/>
     </id>
 
-    <property name="nombre"  column="nombre"  type="string"/>
-    <property name="apellido" column="apellido" type="string"/>
-    <property name="email"   column="email"   type="string"/>
-
-    <set name="turnos" inverse="true" lazy="extra" cascade="all">
-      <key column="cliente_id"/>
-      <one-to-many class="datos.Turno"/>
-    </set>
   </class>
 </hibernate-mapping>

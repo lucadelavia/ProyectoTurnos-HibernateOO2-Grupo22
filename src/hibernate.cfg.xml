@@ -3,7 +3,7 @@
 <hibernate-configuration>
   <session-factory>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="connection.url">jdbc:mysql://localhost/turnos</property>
+    <property name="connection.url">jdbc:mysql://localhost/turnos?serverTimezone=America/Argentina/Buenos_Aires</property>
     <property name="connection.username">root</property>
     <property name="connection.password">root</property>
     <property name="connection.pool_size">1</property>
@@ -13,7 +13,13 @@
     <!--Mapeo Entidades   -->
     <mapping file="src/mapeos/Cliente.hbm.xml"/>
     <mapping file="src/mapeos/Empleado.hbm.xml"/>
-	
+    <mapping file="src/mapeos/Especialidad.hbm.xml"/>
+    <mapping file="src/mapeos/Establecimiento.hbm.xml"/>
+    <mapping file="src/mapeos/PuntoDeAtencion.hbm.xml"/>
+    <mapping file="src/mapeos/Servicio.hbm.xml"/>
+    <mapping file="src/mapeos/Sucursal.hbm.xml"/>
+	<mapping file="src/mapeos/Turno.hbm.xml"/>
+	<mapping file="src/mapeos/Usuario.hbm.xml"/>
 
 
 
