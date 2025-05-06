@@ -1,11 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="datos">
-  <class name="Cliente" table="clientes">
+<hibernate-mapping package="datos"> 
     
-    <id name="id" column="id" type="long">
-      <generator class="identity"/>
-    </id>
+  <joined-subclass name="Cliente"
+                   extends="Usuario"
+                   table="clientes">
+                   
+    <key column="idUsuario"/>
+    
+    <property name="nroCliente" column="nroCliente" type="integer"/>
 
-  </class>
+  </joined-subclass>
 </hibernate-mapping>
