@@ -1,0 +1,23 @@
+<!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="datos">
+  <class name="Establecimiento" table="establecimientos">
+    
+    <id name="id" column="idestablecimiento" type="integer">
+      <generator class="identity"/>
+    </id>
+
+	<property name="nombre" column="nombre" type="string"/>
+  <property name="cuit" column="cuit" type="string"/>
+  <property name="direccion" column="direccion" type="string"/>
+  <property name="descripcion" column="descripcion" type="string"/>
+
+  <set name="sucursales" table="sucursales_establecimiento"
+        inverse="true" lazy="true">
+    <key column="establecimiento_id"/>
+    <one-to-many class="datos.Sucursal" column="sucursal_id"/>
+  </set>
+
+
+  </class>
+</hibernate-mapping>

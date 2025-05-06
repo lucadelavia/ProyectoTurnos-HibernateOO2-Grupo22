@@ -1,0 +1,19 @@
+<!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="datos">
+  <class name="PuntoDeAtencion" table="puntosDeAtencion">
+    
+    <id name="id" column="idpuntoDeAtencion" type="integer">
+      <generator class="identity"/>
+    </id>
+
+	<property name="numeroPuntoDeAtencion" column="numeroPuntoDeAtencion" type="integer"/>
+
+  <set name="empleado" table="empleado_puntoDeAtencion"
+        inverse="true" lazy="true">
+    <key column="puntoDeAtencion_id"/>
+    <one-to-one class="datos.Empleado" column="empleado_id"/>
+  </set>
+
+  </class>
+</hibernate-mapping>
