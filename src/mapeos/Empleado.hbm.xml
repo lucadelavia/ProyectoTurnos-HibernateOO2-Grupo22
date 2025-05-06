@@ -1,21 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="datos">
-
   <joined-subclass name="Empleado"
                    extends="Usuario"
                    table="empleados">
 
     <key column="idUsuario"/>
 
-    <property name="cuil" column="cuil" type="string"/>
-    <property name="matricula" column="matricula" type="string"/>
-    
-    <set name="especialidades" table="empleado_especialidad" cascade="none" lazy="true">
+    <property name="cuil"       column="cuil"       type="string"/>
+    <property name="matricula"  column="matricula"  type="string"/>
+
+    <bag name="lstEspecialidades" table="empleado_especialidad"
+         inverse="true" lazy="true">
       <key column="empleado_id"/>
       <many-to-many class="datos.Especialidad" column="especialidad_id"/>
-    </set>
+    </bag>
 
   </joined-subclass>
 </hibernate-mapping>

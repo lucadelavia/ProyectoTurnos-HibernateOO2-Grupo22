@@ -7,21 +7,22 @@
       <generator class="identity"/>
     </id>
 
-	<property name="direccion" column="direccion" type="string"/>
-  <property name="telefono" column="telefono" type="string"/>
-  <property name="horarioApertura" column="horarioApertura" type="string"/>
-  <property name="horarioCierre" column="horarioCierre" type="string"/>
+    <property name="direccion"     column="direccion"       type="string"/>
+    <property name="telefono"      column="telefono"        type="string"/>
+    <property name="horaApertura"  column="horario_apertura" type="string"/>
+    <property name="horaCierre"    column="horario_cierre"  type="string"/>
 
-  <set name="especialidades" table="especialidad_sucursal"
-        inverse="true" lazy="true">
-    <key column="sucursal_id"/>
-    <many-to-many class="datos.Especialidad" column="especialidad_id"/>
-  </set>
-  <set name="puntosDeAtencion:" table="puntoDeAtencion:_sucursal"
-        inverse="true" lazy="true">
-    <key column="sucursal_id"/>
-    <one-to-many class="datos.PuntoDeAtencion" column="puntoDeAtencion_id"/>
-  </set>
+    <bag name="lstEspecialidad" table="especialidad_sucursal"
+         inverse="true" lazy="true">
+      <key column="sucursal_id"/>
+      <many-to-many class="datos.Especialidad" column="especialidad_id"/>
+    </bag>
+
+    <bag name="puntosDeAtencion" table="puntoDeAtencion_sucursal"
+         inverse="true" lazy="true">
+      <key column="sucursal_id"/>
+      <one-to-many class="datos.PuntoDeAtencion"/>
+    </bag>
 
   </class>
 </hibernate-mapping>

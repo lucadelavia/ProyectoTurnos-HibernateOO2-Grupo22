@@ -15,15 +15,14 @@ public class Sucursal {
 	private List<Especialidad>lstEspecialidad;
 	private List<PuntoDeAtencion>puntosDeAtencion;
 	
-	public Sucursal(String direccion, String telefono, LocalTime horaApertura, LocalTime horaCierre,
-			 List<PuntoDeAtencion> puntosDeAtencion) {
+	public Sucursal(String direccion, String telefono, LocalTime horaApertura, LocalTime horaCierre) {
 		super();
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.horaApertura = horaApertura;
 		this.horaCierre = horaCierre;
 		this.lstEspecialidad = new ArrayList<Especialidad>();
-		this.puntosDeAtencion = puntosDeAtencion;
+		this.puntosDeAtencion = new ArrayList<PuntoDeAtencion>();
 	}
 
 	public Sucursal() {

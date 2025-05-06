@@ -2,18 +2,9 @@
 
 <hibernate-mapping package="datos">
   <class name="Especialidad" table="especialidades">
-    
     <id name="id" column="idEspecialidad" type="integer">
       <generator class="identity"/>
     </id>
-
-	<property name="nombre" column="nombre" type="string"/>
-
-    <set name="empleados" table="empleado_especialidad"
-         inverse="true" lazy="true">
-      <key column="especialidad_id"/>
-      <many-to-many class="datos.Empleado" column="empleado_id"/>
-    </set>
-
+    <property name="nombre" column="nombre" type="string"/>
   </class>
 </hibernate-mapping>

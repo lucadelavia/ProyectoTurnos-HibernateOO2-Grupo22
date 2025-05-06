@@ -3,26 +3,24 @@
 <hibernate-mapping package="datos">
   <class name="Turno" table="Turnos">
     
-	<id name="id" column="idTurno" type="integer">
-	  <generator class="identity"/>
-	</id>
+    <id name="id" column="idTurno" type="integer">
+      <generator class="identity"/>
+    </id>
 
-  <property name="fechaHora"  column="fechaHora"  type="timestamp"/>
-  <property name="estadoActivo" column="estadoActivo" type="boolean"/>
-  <property name="codigo"   column="codigo"   type="string"/>
-  
-  <set name="servicio" table="turno_servicio" cascade="none" lazy="true">
-      <key column="turno_id"/>
-      <many-to-one class="datos.Servicio" column="servicio_id"/>
-  </set>
-  <set name="cliente" table="turno_cliente" cascade="none" lazy="true">
-      <key column="turno_id"/>
-      <many-to-one class="datos.Cliente" column="cliente_id"/>
-  </set>
-  <set name="puntoDeAtencion" table="turno_puntoDeAtencion" cascade="none" lazy="true">
-      <key column="turno_id"/>
-      <many-to-one class="datos.PuntoDeAtencion" column="puntoDeAtencion_id"/>
-  </set>
+    <property name="fechaHora" column="fechaHora" type="timestamp"/>
+    <property name="estado"    column="estadoActivo" type="boolean"/>
+    <property name="codigo"    column="codigo"        type="string"/>
+
+    <many-to-one name="cliente"
+                 class="datos.Cliente"
+                 column="cliente_id"
+                 not-null="true"
+                 fetch="select"/>
+    <many-to-one name="puntoDeAtencion"
+                 class="datos.PuntoDeAtencion"
+                 column="puntoDeAtencion_id"
+                 not-null="true"
+                 fetch="select"/>
 
   </class>
 </hibernate-mapping>
