@@ -61,11 +61,6 @@ public class UsuarioABM {
         	throw new IllegalArgumentException("ERROR: No existe usuario con ID: " + u.getId());
         }
         
-        if (!actual.getEmail().equals(u.getEmail())
-            && usuarioDao.traerPorEmail(u.getEmail()) != null) {
-        	throw new IllegalArgumentException("ERROR: Ya existe un usuario con ese EMAIL");
-        }
-        
         actual.setNombre(u.getNombre());
         actual.setApellido(u.getApellido());
         actual.setEmail(u.getEmail());

@@ -35,7 +35,7 @@ public class EspecialidadDao {
         return id;
     }
     
-    public Especialidad traer(long idEspecialidad) {
+    public Especialidad traer(int idEspecialidad) {
     	Especialidad objeto = null;
 		try {
 			iniciaOperacion();
@@ -46,6 +46,20 @@ public class EspecialidadDao {
 		return objeto;
 	}
 
+    public Especialidad traerPorNombre(String nombre) {
+        Especialidad e = null;
+        try {
+            iniciaOperacion();
+            e = (Especialidad) session
+                .createQuery("FROM Especialidad WHERE nombre = :n")
+                .setParameter("n", nombre)
+                .uniqueResult();
+        } finally {
+            session.close();
+        }
+        return e;
+    }
+    
 	public void actualizar(Especialidad objeto) {
 		try {
 			iniciaOperacion();
