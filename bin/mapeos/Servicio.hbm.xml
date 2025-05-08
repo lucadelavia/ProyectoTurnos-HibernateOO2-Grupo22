@@ -1,0 +1,14 @@
+<!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="datos">
+  <class name="Servicio" table="Servicios">
+    
+	<id name="id" column="idServicio" type="integer">
+	  <generator class="identity"/>
+	</id>
+
+  <property name="nombreServicio"  column="nombreServicio"  type="string"/>
+  <property name="duracion" column="duracion" type="integer"/>
+
+  </class>
+</hibernate-mapping>
