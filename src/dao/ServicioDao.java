@@ -35,7 +35,7 @@ public class ServicioDao {
         return id;
     }
     
-    public Servicio traer(long idServicio) {
+    public Servicio traer(int idServicio) {
     	Servicio objeto = null;
 		try {
 			iniciaOperacion();
@@ -72,4 +72,18 @@ public class ServicioDao {
 		}
 	}
 	
+	public Servicio traerPorNombreServicio(String nombreServicio){
+		Servicio s = null;
+        try {
+            iniciaOperacion();
+            String hql = "from Servicio s where s.nombreServicio =:nombreServicio";
+            s = (Servicio) session.createQuery(hql).setParameter("nombreServicio", nombreServicio).uniqueResult();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+            session.close();
+        }
+        return s;
+	}
 }
