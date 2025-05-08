@@ -3,7 +3,9 @@ package test;
 import negocio.UsuarioABM;
 import datos.Usuario;
 import negocio.EspecialidadABM;
+import negocio.EstablecimientoABM;
 import datos.Especialidad;
+import datos.Establecimiento;
 import negocio.ServicioABM;
 import datos.Servicio;
 
@@ -61,6 +63,15 @@ public class TestSistema {
         
         //        abm.bajaEspecialidad(mod.getId());
 //        System.out.println("Especialidad eliminada con ID: " + mod.getId());
-      
+        
+        EstablecimientoABM establecimientoABM = new EstablecimientoABM();
+
+        Establecimiento est = establecimientoABM.altaEstablecimiento(
+            "Supermercado Central",
+            "20-12345678-9",
+            "Av. Siempre Viva 247",
+            "Supermercado de barrio"
+        );
+        System.out.println("Establecimiento creado: " + est);
     }
 }

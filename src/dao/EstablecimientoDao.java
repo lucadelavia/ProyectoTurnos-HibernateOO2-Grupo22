@@ -35,7 +35,7 @@ public class EstablecimientoDao {
         return id;
     }
     
-    public Establecimiento traer(long idEstablecimiento) {
+    public Establecimiento traer(int idEstablecimiento) {
     	Establecimiento objeto = null;
 		try {
 			iniciaOperacion();
@@ -45,6 +45,24 @@ public class EstablecimientoDao {
 		}
 		return objeto;
 	}
+    
+    public Establecimiento traerPorNombreEstablecimiento(String nombre) {
+        Establecimiento est = null;
+        try {
+            iniciaOperacion();
+            String hql = "from Establecimiento est where est.nombre = :nombre";
+            est = (Establecimiento) session
+                    .createQuery(hql)
+                    .setParameter("nombre", nombre)
+                    .uniqueResult();
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
+            session.close();
+        }
+        return est;
+    }
 
 	public void actualizar(Establecimiento objeto) {
 		try {
