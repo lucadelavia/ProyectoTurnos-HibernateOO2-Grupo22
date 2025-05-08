@@ -35,7 +35,7 @@ public class UsuarioDao {
         return id;
     }
     
-    public Usuario traer(long idUsuario) {
+    public Usuario traer(int idUsuario) {
     	Usuario objeto = null;
 		try {
 			iniciaOperacion();
@@ -45,6 +45,34 @@ public class UsuarioDao {
 		}
 		return objeto;
 	}
+    
+    public Usuario traerPorDni(int dni) {
+        Usuario usuario = null;
+        try {
+            iniciaOperacion();
+            usuario = (Usuario) session
+                .createQuery("FROM Usuario WHERE dni = :d")
+                .setParameter("d", dni)
+                .uniqueResult();
+        } finally {
+            session.close();
+        }
+        return usuario;
+    }
+    
+    public Usuario traerPorEmail(String email) {
+        Usuario usuario = null;
+        try {
+            iniciaOperacion();
+            usuario = (Usuario) session
+                .createQuery("FROM Usuario WHERE email = :e")
+                .setParameter("e", email)
+                .uniqueResult();
+        } finally {
+            session.close();
+        }
+        return usuario;
+    }
 
 	public void actualizar(Usuario objeto) {
 		try {

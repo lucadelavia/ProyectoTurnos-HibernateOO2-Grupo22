@@ -13,7 +13,7 @@
     <property name="direccion"   column="direccion"   type="string"/>
 	<property name="dni"   column="dni"   type="integer" unique="true" not-null="true"/>
 	<property name="estado"   column="estado"   type="boolean"/>
-	<property name="fechaAlta"   column="fechaAlta"   type="timestamp"/>
+	<property name="fechaAlta" column="fechaAlta" type="org.hibernate.type.LocalDateTimeType"/>
 
   </class>
 </hibernate-mapping>
