@@ -7,13 +7,30 @@
 	  <generator class="identity"/>
 	</id>
 
-    <property name="nombre"  column="nombre"  type="string"/>
-    <property name="apellido" column="apellido" type="string"/>
-    <property name="email"   column="email"   type="string"/>
-    <property name="direccion"   column="direccion"   type="string"/>
+  <property name="nombre"  column="nombre"  type="string"/>
+  <property name="apellido" column="apellido" type="string"/>
+  <property name="email"   column="email"   type="string"/>
+  <property name="direccion"   column="direccion"   type="string"/>
 	<property name="dni"   column="dni"   type="integer" unique="true" not-null="true"/>
 	<property name="estado"   column="estado"   type="boolean"/>
 	<property name="fechaAlta" column="fechaAlta" type="org.hibernate.type.LocalDateTimeType"/>
+
+  <joined-subclass name="datos.Cliente" table="cliente">
+    <key column="nroCliente" />
+    <property column="nroCliente" name="nroCliente" type="integer" />
+  </joined-subclass>
+
+  <joined-subclass name="datos.Empleado" table="empleado">
+    <key column="idEmpleado" />
+    <property name="cuil"       column="cuil"       type="string"/>
+    <property name="matricula"  column="matricula"  type="string"/>
+
+    <bag name="lstEspecialidades" table="empleado_especialidad"
+        inverse="true" lazy="true">
+      <key column="empleado_id"/>
+      <many-to-many class="datos.Especialidad" column="especialidad_id"/>
+    </bag>
+  </joined-subclass>
 
   </class>
 </hibernate-mapping>
