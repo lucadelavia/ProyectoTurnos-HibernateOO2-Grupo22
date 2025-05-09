@@ -26,13 +26,6 @@ public class Establecimiento {
 		this.sucursales = new HashSet<Sucursal>();
 	}
 
-	//METODOS DE LA CLASE
-//	+ altaEstablecimiento(establecimiento: Establecimiento)
-//	+ bajaEstablecimiento(id: int)
-//	+ modificarEstablecimiento(establecimiento: Establecimiento)
-//	+ asociarSucursalAEstablecimiento(idSucursal: int, establecimiento: Establecimiento)
-//	+ removerSucursal(establecimiento: Establecimiento, idSucursal: int)
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -89,6 +82,4 @@ public class Establecimiento {
 	public void setSucursales(Set<Sucursal> sucursales) {
 		this.sucursales = sucursales;
 	}
-	
-	
 }

@@ -9,8 +9,8 @@
 
     <property name="direccion"     column="direccion"       type="string"/>
     <property name="telefono"      column="telefono"        type="string"/>
-    <property name="horaApertura"  column="horario_apertura" type="string"/>
-    <property name="horaCierre"    column="horario_cierre"  type="string"/>
+    <property name="horaApertura"  column="horarioApertura" type="time"/>
+    <property name="horaCierre"    column="horarioCierre"  type="time"/>
 
     <bag name="lstEspecialidad" table="especialidad_sucursal"
          inverse="true" lazy="true">

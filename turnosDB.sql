@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS turnos CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE turnos CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE turnos;
 
 CREATE TABLE Usuarios (
@@ -59,6 +59,7 @@ CREATE TABLE puntosDeAtencion (
   idpuntoDeAtencion     INT NOT NULL AUTO_INCREMENT,
   numeroPuntoDeAtencion INT,
   sucursal_id            INT,
+  empleado_id           INT,
   PRIMARY KEY (idpuntoDeAtencion),
   CONSTRAINT fk_puntos_sucursal FOREIGN KEY (sucursal_id) REFERENCES sucursales(idsucursal)
 ) ENGINE=InnoDB;

@@ -33,6 +33,22 @@ public class SucursalDao {
         }
         return id;
     }
+    
+    public Sucursal traer(int idSucursal) {
+        Sucursal objeto = null;
+        try {
+            iniciaOperacion();
+            objeto = (Sucursal) session.get(Sucursal.class, idSucursal);
+
+            if (objeto != null) {
+                objeto.getPuntosDeAtencion().size(); 
+            }
+
+        } finally {
+            session.close();
+        }
+        return objeto;
+    }
 
     public void actualizar(Sucursal objeto) {
         try {
@@ -56,16 +72,5 @@ public class SucursalDao {
         } finally {
             session.close();
         }
-    }
-
-    public Sucursal traer(int idSucursal) {
-        Sucursal objeto = null;
-        try {
-            iniciaOperacion();
-            objeto = (Sucursal) session.get(Sucursal.class, idSucursal);
-        } finally {
-            session.close();
-        }
-        return objeto;
     }
 }

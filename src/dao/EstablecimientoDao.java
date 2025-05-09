@@ -35,15 +35,18 @@ public class EstablecimientoDao {
         return id;
     }
     
-    public Establecimiento traer(int idEstablecimiento) {
-    	Establecimiento objeto = null;
-		try {
-			iniciaOperacion();
-			objeto = (Establecimiento) session.get(Establecimiento.class, idEstablecimiento);
-		} finally {
-			session.close();
-		}
-		return objeto;
+	public Establecimiento traer(int idEstablecimiento) {
+	    Establecimiento objeto = null;
+	    try {
+	        iniciaOperacion();
+	        objeto = (Establecimiento) session.get(Establecimiento.class, idEstablecimiento);
+	        if (objeto != null) {
+	            objeto.getSucursales().size(); 
+	        }
+	    } finally {
+	        session.close();
+	    }
+	    return objeto;
 	}
     
     public Establecimiento traerPorNombreEstablecimiento(String nombre) {
@@ -54,6 +57,24 @@ public class EstablecimientoDao {
             est = (Establecimiento) session
                     .createQuery(hql)
                     .setParameter("nombre", nombre)
+                    .uniqueResult();
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
+            session.close();
+        }
+        return est;
+    }
+    
+    public Establecimiento traerPorCuitEstablecimiento(String cuit) {
+        Establecimiento est = null;
+        try {
+            iniciaOperacion();
+            String hql = "from Establecimiento est where est.cuit = :cuit";
+            est = (Establecimiento) session
+                    .createQuery(hql)
+                    .setParameter("cuit", cuit)
                     .uniqueResult();
         } catch (HibernateException he) {
             manejaExcepcion(he);
@@ -89,5 +110,4 @@ public class EstablecimientoDao {
 			session.close();
 		}
 	}
-	
 }

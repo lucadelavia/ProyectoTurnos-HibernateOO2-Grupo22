@@ -7,7 +7,11 @@ import negocio.EstablecimientoABM;
 import datos.Especialidad;
 import datos.Establecimiento;
 import negocio.ServicioABM;
+import negocio.SucursalABM;
 import datos.Servicio;
+import datos.Sucursal;
+
+import java.sql.Time;
 
 public class TestSistema {
     public static void main(String[] args) {
@@ -73,5 +77,27 @@ public class TestSistema {
             "Supermercado de barrio"
         );
         System.out.println("Establecimiento creado: " + est);
+        
+        est.setNombre("Supermercado Norte");
+        est.setDireccion("Av. Siempre Viva 248");
+        est.setDescripcion("Nuevo supermercado de barrio");
+
+        Establecimiento estModificado = establecimientoABM.modificarEstablecimiento(est);
+        System.out.println("Establecimiento modificado: " + estModificado);
+        
+        SucursalABM sucursalABM = new SucursalABM();
+        
+        Sucursal suc = sucursalABM.altaSucursal(
+                "Av. Oeste 500", 
+                "3811234567", 
+                Time.valueOf("09:00:00"),  
+                Time.valueOf("18:00:00")
+            );
+        System.out.println("Sucursal: " + suc);
+        
+        suc.setDireccion("Av. Este 500");
+
+        Sucursal sucModificada = sucursalABM.modificarSucursal(suc);
+        System.out.println("Sucursal modificado: " + sucModificada);
     }
 }

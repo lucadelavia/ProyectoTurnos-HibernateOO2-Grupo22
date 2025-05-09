@@ -1,6 +1,6 @@
 package datos;
 
-import java.time.LocalTime;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,12 +10,12 @@ public class Sucursal {
 	private int id;
 	private String direccion;
 	private String telefono;
-	private LocalTime horaApertura;
-	private LocalTime horaCierre;
+	private Time horaApertura;
+	private Time horaCierre;
 	private List<Especialidad>lstEspecialidad;
 	private List<PuntoDeAtencion>puntosDeAtencion;
 	
-	public Sucursal(String direccion, String telefono, LocalTime horaApertura, LocalTime horaCierre) {
+	public Sucursal(String direccion, String telefono, Time horaApertura, Time horaCierre) {
 		super();
 		this.direccion = direccion;
 		this.telefono = telefono;
@@ -28,11 +28,6 @@ public class Sucursal {
 	public Sucursal() {
 		super();
 	}
-
-	//METODOS DE LA CLASE
-//	+ altaSucursal(sucursal: Sucursal)
-//	+ bajaSucursal(id: int)
-//	+ modificarSucursal(sucursal: Sucursal)
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -72,16 +67,16 @@ public class Sucursal {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public LocalTime getHoraApertura() {
+	public Time getHoraApertura() {
 		return horaApertura;
 	}
-	public void setHoraApertura(LocalTime horaApertura) {
+	public void setHoraApertura(Time horaApertura) {
 		this.horaApertura = horaApertura;
 	}
-	public LocalTime getHoraCierre() {
+	public Time getHoraCierre() {
 		return horaCierre;
 	}
-	public void setHoraCierre(LocalTime horaCierre) {
+	public void setHoraCierre(Time horaCierre) {
 		this.horaCierre = horaCierre;
 	}
 	public List<Especialidad> getLstEspecialidad() {
@@ -96,7 +91,4 @@ public class Sucursal {
 	public void setPuntosDeAtencion(List<PuntoDeAtencion> puntosDeAtencion) {
 		this.puntosDeAtencion = puntosDeAtencion;
 	}
-	
-	
-	
 }
