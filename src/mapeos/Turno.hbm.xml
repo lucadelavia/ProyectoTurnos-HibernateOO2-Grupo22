@@ -16,11 +16,5 @@
                  column="cliente_id"
                  not-null="true"
                  fetch="select"/>
-    <many-to-one name="puntoDeAtencion"
-                 class="datos.PuntoDeAtencion"
-                 column="puntoDeAtencion_id"
-                 not-null="true"
-                 fetch="select"/>
-
   </class>
 </hibernate-mapping>

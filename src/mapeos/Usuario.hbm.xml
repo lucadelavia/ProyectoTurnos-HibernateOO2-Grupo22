@@ -16,7 +16,7 @@
 	<property name="fechaAlta" column="fechaAlta" type="org.hibernate.type.LocalDateTimeType"/>
 
   <joined-subclass name="datos.Cliente" table="cliente">
-    <key column="nroCliente" />
+    <key column="idCliente" />
     <property column="nroCliente" name="nroCliente" type="integer" />
   </joined-subclass>
 

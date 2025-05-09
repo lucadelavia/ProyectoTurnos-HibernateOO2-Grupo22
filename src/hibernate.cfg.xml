@@ -11,8 +11,6 @@
     <property name="show_sql">true</property>    <!-- en true muestra hql en consola-->
     
     <!--Mapeo Entidades   -->
-    <mapping file="src/mapeos/Cliente.hbm.xml"/>
-    <mapping file="src/mapeos/Empleado.hbm.xml"/>
     <mapping file="src/mapeos/Especialidad.hbm.xml"/>
     <mapping file="src/mapeos/Establecimiento.hbm.xml"/>
     <mapping file="src/mapeos/Servicio.hbm.xml"/>

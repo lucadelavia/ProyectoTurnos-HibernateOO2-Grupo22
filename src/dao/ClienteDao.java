@@ -6,7 +6,7 @@ import org.hibernate.Transaction;
 
 import datos.Cliente;
 
-public class ClienteDao {
+public class ClienteDao{
 	private static Session session;
     private Transaction tx;
 
@@ -35,7 +35,7 @@ public class ClienteDao {
         return id;
     }
     
-    public Cliente traer(long idCliente) {
+    public Cliente traer(int idCliente) {
     	Cliente objeto = null;
 		try {
 			iniciaOperacion();

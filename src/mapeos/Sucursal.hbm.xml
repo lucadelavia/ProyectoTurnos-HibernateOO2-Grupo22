@@ -20,11 +20,5 @@
       <many-to-many class="datos.Especialidad" column="especialidad_id"/>
     </bag>
 
-    <bag name="puntosDeAtencion" table="puntoDeAtencion_sucursal"
-         inverse="true" lazy="true">
-      <key column="sucursal_id"/>
-      <one-to-many class="datos.PuntoDeAtencion"/>
-    </bag>
-
   </class>
 </hibernate-mapping>
