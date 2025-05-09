@@ -13,7 +13,6 @@ public class Sucursal {
 	private Time horaApertura;
 	private Time horaCierre;
 	private List<Especialidad>lstEspecialidad;
-	private List<PuntoDeAtencion>puntosDeAtencion;
 	private Establecimiento establecimiento;
 	
 	public Sucursal(String direccion, String telefono, Time horaApertura, Time horaCierre) {
@@ -23,7 +22,6 @@ public class Sucursal {
 		this.horaApertura = horaApertura;
 		this.horaCierre = horaCierre;
 		this.lstEspecialidad = new ArrayList<Especialidad>();
-		this.puntosDeAtencion = new ArrayList<PuntoDeAtencion>();
 	}
 
 	public Sucursal() {
@@ -39,9 +37,10 @@ public class Sucursal {
 		if (getClass() != obj.getClass())
 			return false;
 		Sucursal other = (Sucursal) obj;
-		return Objects.equals(direccion, other.direccion) && Objects.equals(horaApertura, other.horaApertura)
-				&& Objects.equals(horaCierre, other.horaCierre) && id == other.id
-				&& Objects.equals(puntosDeAtencion, other.puntosDeAtencion) && Objects.equals(telefono, other.telefono);
+		return Objects.equals(direccion, other.direccion) && Objects.equals(establecimiento, other.establecimiento)
+				&& Objects.equals(horaApertura, other.horaApertura) && Objects.equals(horaCierre, other.horaCierre)
+				&& id == other.id && Objects.equals(lstEspecialidad, other.lstEspecialidad)
+				&& Objects.equals(telefono, other.telefono);
 	}
 
 	@Override
@@ -85,12 +84,6 @@ public class Sucursal {
 	}
 	public void setLstEspecialidad(List<Especialidad> lstEspecialidad) {
 		this.lstEspecialidad = lstEspecialidad;
-	}
-	public List<PuntoDeAtencion> getPuntosDeAtencion() {
-		return puntosDeAtencion;
-	}
-	public void setPuntosDeAtencion(List<PuntoDeAtencion> puntosDeAtencion) {
-		this.puntosDeAtencion = puntosDeAtencion;
 	}
     public Establecimiento getEstablecimiento() {
         return establecimiento;

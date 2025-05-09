@@ -10,15 +10,13 @@ public class Turno {
 	private String codigo;
 	private Servicio servicio;
 	private Cliente cliente;
-	private PuntoDeAtencion puntoDeAtencion;
 
-	public Turno(LocalDateTime fechaHora, boolean estado, String codigo, Servicio servicio, Cliente cliente, PuntoDeAtencion puntoDeAtencion) {
+	public Turno(LocalDateTime fechaHora, boolean estado, String codigo, Servicio servicio, Cliente cliente) {
 		this.fechaHora = fechaHora;
 		this.estado = estado;
 		this.codigo = codigo;
 		this.servicio = servicio;
 		this.cliente = cliente;
-		this.puntoDeAtencion = puntoDeAtencion;
 	}
 
 	public int getId() {
@@ -69,18 +67,10 @@ public class Turno {
 		this.cliente = cliente;
 	}
 
-	public PuntoDeAtencion getPuntoDeAtencion() {
-		return puntoDeAtencion;
-	}
-
-	public void setPuntoDeAtencion(PuntoDeAtencion puntoDeAtencion) {
-		this.puntoDeAtencion = puntoDeAtencion;
-	}
-
 	@Override
 	public String toString() {
 		return "Turno [id=" + id + ", fechaHora=" + fechaHora + ", estado=" + estado + ", codigo=" + codigo
-				+ ", servicio=" + servicio + ", cliente=" + cliente + ", puntoDeAtencion=" + puntoDeAtencion + "]";
+				+ ", servicio=" + servicio + ", cliente=" + cliente + "]";
 	}
 	
 	

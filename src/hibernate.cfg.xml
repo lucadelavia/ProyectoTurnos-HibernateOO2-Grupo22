@@ -15,7 +15,6 @@
     <mapping file="src/mapeos/Empleado.hbm.xml"/>
     <mapping file="src/mapeos/Especialidad.hbm.xml"/>
     <mapping file="src/mapeos/Establecimiento.hbm.xml"/>
-    <mapping file="src/mapeos/PuntoDeAtencion.hbm.xml"/>
     <mapping file="src/mapeos/Servicio.hbm.xml"/>
     <mapping file="src/mapeos/Sucursal.hbm.xml"/>
 	<mapping file="src/mapeos/Turno.hbm.xml"/>

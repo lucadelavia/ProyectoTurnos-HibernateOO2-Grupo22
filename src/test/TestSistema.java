@@ -56,13 +56,13 @@ public class TestSistema {
         Especialidad mod = abm.modificarEspecialidad(e);
         System.out.println("Especialidad modificada: " + mod);
 
-        ServicioABM servicioABM = new ServicioABM();
-        Servicio servicio = servicioABM.altaServicio("Atencion Medica", 1);
-        System.out.println("Servicio Creado: " + servicio);
-
-        servicio.setDuracion(2);
-        Servicio servicio_modificado = servicioABM.modificarServicio(servicio);
-        System.out.println("Servicio modificado: " + servicio_modificado);
+//        ServicioABM servicioABM = new ServicioABM();
+//        Servicio servicio = servicioABM.altaServicio("Atencion Medica", 1);
+//        System.out.println("Servicio Creado: " + servicio);
+//
+//        servicio.setDuracion(2);
+//        Servicio servicio_modificado = servicioABM.modificarServicio(servicio);
+//        System.out.println("Servicio modificado: " + servicio_modificado);
 
         
         //        abm.bajaEspecialidad(mod.getId());
