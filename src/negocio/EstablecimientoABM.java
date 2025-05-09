@@ -1,11 +1,13 @@
 package negocio;
 
 import datos.Establecimiento;
+import datos.Sucursal;
 import dao.EstablecimientoDao;
 
 public class EstablecimientoABM {
 	
 	private final EstablecimientoDao establecimientoDao = new EstablecimientoDao ();
+	private final SucursalABM sucursalABM = new SucursalABM();
 	
 	public Establecimiento altaEstablecimiento(String nombre, String cuit, String direccion, String descripcion) {
 		Establecimiento est = new Establecimiento(nombre, cuit, direccion, descripcion);
@@ -44,7 +46,32 @@ public class EstablecimientoABM {
 
 	    return actual; 
 	}
+	
+	public Establecimiento traer(int idEstablecimiento) {
+        Establecimiento est = establecimientoDao.traer(idEstablecimiento);
+        if (est == null) {
+            throw new IllegalArgumentException("ERROR: No existe un establecimiento con ID: " + idEstablecimiento);
+        }
+        return est;
+    }
+	
+    public void asociarSucursalAEstablecimiento(int idEst, int idSuc) {
+        Establecimiento est = establecimientoDao.traer(idEst);
+       
+        if (est == null) {
+            throw new IllegalArgumentException("ERROR: no existe establecimiento con ID: " + idEst);
+        }
+        Sucursal suc = sucursalABM.traer(idSuc);
+        
+        if (suc == null) {
+            throw new IllegalArgumentException("ERROR: no existe sucursal con ID: " + idSuc);
+        }
+        if (!est.getSucursales().contains(suc)) {
+            est.getSucursales().add(suc);
+        }
+        suc.setEstablecimiento(est);
+        establecimientoDao.actualizar(est);
+    }
 }
 
-//    public void asociarSucursalAEstablecimiento(int idEst, int idSuc);
-//    public void removerSucursal(int idEst, int idSuc);
+// public void removerSucursal(int idEst, int idSuc);

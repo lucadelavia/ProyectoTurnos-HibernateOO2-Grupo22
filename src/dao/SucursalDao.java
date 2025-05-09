@@ -1,5 +1,6 @@
 package dao;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -34,14 +35,14 @@ public class SucursalDao {
         return id;
     }
     
-    public Sucursal traer(int idSucursal) {
+    public Sucursal traer(int id) throws HibernateException {
         Sucursal objeto = null;
         try {
             iniciaOperacion();
-            objeto = (Sucursal) session.get(Sucursal.class, idSucursal);
-
-            if (objeto != null) {
-                objeto.getPuntosDeAtencion().size(); 
+            objeto = session.get(Sucursal.class, id);
+            
+            if (objeto != null && objeto.getEstablecimiento() != null) {
+                Hibernate.initialize(objeto.getEstablecimiento().getSucursales());
             }
 
         } finally {
@@ -49,7 +50,7 @@ public class SucursalDao {
         }
         return objeto;
     }
-
+    
     public void actualizar(Sucursal objeto) {
         try {
             iniciaOperacion();
@@ -57,6 +58,7 @@ public class SucursalDao {
             tx.commit();
         } catch (HibernateException he) {
             manejaExcepcion(he);
+            throw he;
         } finally {
             session.close();
         }
@@ -69,6 +71,7 @@ public class SucursalDao {
             tx.commit();
         } catch (HibernateException he) {
             manejaExcepcion(he);
+            throw he;
         } finally {
             session.close();
         }

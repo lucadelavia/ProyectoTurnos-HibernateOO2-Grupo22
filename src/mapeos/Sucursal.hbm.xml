@@ -11,7 +11,9 @@
     <property name="telefono"      column="telefono"        type="string"/>
     <property name="horaApertura"  column="horarioApertura" type="time"/>
     <property name="horaCierre"    column="horarioCierre"  type="time"/>
-
+    
+    <many-to-one name="establecimiento" class="datos.Establecimiento" column="idestablecimiento" not-null="false"/>
+    
     <bag name="lstEspecialidad" table="especialidad_sucursal"
          inverse="true" lazy="true">
       <key column="sucursal_id"/>

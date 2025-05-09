@@ -95,14 +95,6 @@ CREATE TABLE especialidad_sucursal (
   CONSTRAINT fk_esp_suc_esp FOREIGN KEY (especialidad_id) REFERENCES especialidades(idEspecialidad)
 ) ENGINE=InnoDB;
 
-CREATE TABLE sucursales_establecimiento (
-  establecimiento_id INT NOT NULL,
-  sucursal_id        INT NOT NULL,
-  PRIMARY KEY (establecimiento_id, sucursal_id),
-  CONSTRAINT fk_suc_est_est FOREIGN KEY (establecimiento_id) REFERENCES establecimientos(idestablecimiento),
-  CONSTRAINT fk_suc_est_suc FOREIGN KEY (sucursal_id) REFERENCES sucursales(idsucursal)
-) ENGINE=InnoDB;
-
 CREATE TABLE turno_servicio (
   turno_id    INT NOT NULL,
   servicio_id INT NOT NULL,
