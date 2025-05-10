@@ -3,9 +3,11 @@ package test;
 import negocio.UsuarioABM;
 import datos.Usuario;
 import negocio.DiasDeAtencionABM;
+import negocio.EmpleadoABM;
 import negocio.EspecialidadABM;
 import negocio.EstablecimientoABM;
 import datos.DiasDeAtencion;
+import datos.Empleado;
 import datos.Especialidad;
 import datos.Establecimiento;
 import negocio.ServicioABM;
@@ -54,9 +56,38 @@ public class TestSistema {
         Especialidad porNombre = abm.obtenerEspecialidadPorNombre("Cardiología");
         System.out.println("Recuperado por nombre: " + porNombre);
 
-        e.setNombre("Neurología");
-        Especialidad mod = abm.modificarEspecialidad(e);
-        System.out.println("Especialidad modificada: " + mod);
+//        e.setNombre("Neurología");
+//        Especialidad mod = abm.modificarEspecialidad(e);
+//        System.out.println("Especialidad modificada: " + mod);
+        
+        EmpleadoABM empleadoABM = new EmpleadoABM();
+
+        Especialidad esp1 = abm.obtenerEspecialidadPorNombre("Cardiología");
+        if (esp1 == null) {
+            esp1 = abm.altaEspecialidad(new Especialidad("Cardiología"));
+            System.out.println("Especialidad creada: " + esp1);
+        }
+ 
+        Especialidad esp2 = abm.altaEspecialidad(new Especialidad("Pediatría"));
+        System.out.println("Especialidad creada: " + esp2);
+
+        Empleado empleado = new Empleado(
+            "María",
+            "López",
+            "maria.lopez@example.com",
+            "Calle Salud 789",
+            40999888,              // DNI
+            true,                  // estado
+            java.time.LocalDateTime.now(), // fechaAlta
+            272223334,             // CUIL
+            "MAT5678"              // Matrícula
+        );
+
+        empleado.getLstEspecialidades().add(esp1);
+        empleado.getLstEspecialidades().add(esp2);
+
+        empleado = empleadoABM.altaEmpleado(empleado);
+        System.out.println("Empleado creado con especialidades: " + empleado);
 
         ServicioABM servicioABM = new ServicioABM();
         Servicio servicio = servicioABM.altaServicio("Atencion Medica", 1);
@@ -67,8 +98,8 @@ public class TestSistema {
         System.out.println("Servicio modificado: " + servicio_modificado);
 
         
-        abm.bajaEspecialidad(mod.getId());
-        System.out.println("Especialidad eliminada con ID: " + mod.getId());
+//        abm.bajaEspecialidad(mod.getId());
+//        System.out.println("Especialidad eliminada con ID: " + mod.getId());
         
         EstablecimientoABM establecimientoABM = new EstablecimientoABM();
 

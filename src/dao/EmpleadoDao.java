@@ -52,7 +52,7 @@ public class EmpleadoDao {
         try {
             iniciaOperacion();
             empleado = (Empleado) session
-                .createQuery("FROM Empleados WHERE dni = :d")
+                .createQuery("FROM Empleado WHERE dni = :d")
                 .setParameter("d", dni)
                 .uniqueResult();
         } finally {
@@ -66,7 +66,7 @@ public class EmpleadoDao {
         try {
             iniciaOperacion();
             empleado = (Empleado) session
-                .createQuery("FROM Empleados WHERE cuil = :c")
+                .createQuery("FROM Empleado WHERE cuil = :c")
                 .setParameter("c", cuil)
                 .uniqueResult();
         } finally {

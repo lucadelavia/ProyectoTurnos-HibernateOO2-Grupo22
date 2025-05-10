@@ -23,7 +23,7 @@ CREATE TABLE clientes (
 -- Tabla: Empleados
 CREATE TABLE empleados (
     idEmpleado INT PRIMARY KEY,
-    cuil VARCHAR(255),
+    cuil INT,
     matricula VARCHAR(255),
     FOREIGN KEY (idEmpleado) REFERENCES Usuarios(idUsuario)
 );

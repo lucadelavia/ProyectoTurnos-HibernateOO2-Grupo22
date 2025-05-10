@@ -1,17 +1,20 @@
 package negocio;
 
-import java.util.List;
+//import java.util.List;
 
 import datos.Empleado;
-import datos.Turno;
+import datos.Especialidad;
+//import datos.Turno;
 import dao.EmpleadoDao;
-import dao.TurnoDao;
-import org.hibernate.SessionFactory;
-import dao.HibernateUtil;
+import dao.EspecialidadDao;
+//import dao.TurnoDao;
+
 
 public class EmpleadoABM {
 
 	private final EmpleadoDao empleadoDao = new EmpleadoDao();
+//	private final TurnoDao turnoDao = new TurnoDao();
+	private final EspecialidadDao especialidadDao = new EspecialidadDao();
 
 	public Empleado altaEmpleado(Empleado e){
 
@@ -74,9 +77,36 @@ public class EmpleadoABM {
 		
 	}
 	
-
-	//  public void asignarEspecialidad(int idEmpleado, Especialidad esp);
-	//  public void removerEspecialidad(int idEmpleado, Especialidad esp);
+	public void asignarEspecialidad(int idEmpleado, Especialidad esp) {
+		
+		Empleado e = empleadoDao.traer(idEmpleado);
+		Especialidad especialidad = especialidadDao.traer(esp.getId());
+		
+	    if (e == null || especialidad == null) {
+	        throw new IllegalArgumentException("Empleado o Especialidad no encontrado");
+	    }
+		
+	    e.getLstEspecialidades().add(especialidad);
+	    
+	    empleadoDao.actualizar(e);
+	    
+	}
+	
+	public void removerEspecialidad(int idEmpleado, Especialidad esp) {
+		
+		Empleado e = empleadoDao.traer(idEmpleado);
+		Especialidad especialidad = especialidadDao.traer(esp.getId());
+		
+	    if (e == null || especialidad == null) {
+	        throw new IllegalArgumentException("Empleado o Especialidad no encontrado");
+	    }
+	    
+	    e.getLstEspecialidades().remove(especialidad);
+	    
+	    empleadoDao.actualizar(e);
+		
+	}
+	
 	//  public List<Especialidad> listarEspecialidades(int idEmpleado);
 	//
 	//  public List<Turno> verTurnosAsignados(int idEmpleado);
