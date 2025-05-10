@@ -1,6 +1,7 @@
 package negocio;
 
 import datos.Sucursal;
+import datos.DiasDeAtencion;
 import dao.SucursalDao;
 
 import java.sql.Time;
@@ -8,6 +9,7 @@ import java.sql.Time;
 public class SucursalABM {
 	
 	private final SucursalDao sucursalDao = new SucursalDao();
+	private DiasDeAtencionABM diasAtencionABM = new DiasDeAtencionABM();
 
     public Sucursal altaSucursal(String direccion, String telefono, Time horaApertura, Time horaCierre) {
         Sucursal suc = new Sucursal(direccion, telefono, horaApertura, horaCierre);
@@ -47,5 +49,43 @@ public class SucursalABM {
             throw new IllegalArgumentException("ERROR: no existe una sucursal con ID: " + idSucursal);
         }
         return suc;
+    }
+    
+    public void asociarDiaDeAtencion(int idSucursal, int idDiasAtencion) {
+        Sucursal suc = sucursalDao.traer(idSucursal);
+        
+        if (suc == null) {
+            throw new IllegalArgumentException("ERROR: no existe una sucursal con ID: " + idSucursal);
+        }
+        DiasDeAtencion dia = diasAtencionABM.traer(idDiasAtencion);
+        
+        if (dia == null) {
+            throw new IllegalArgumentException("ERROR: no existe un dia de atencion con ID: " + idDiasAtencion);
+        }
+        if (!suc.getLstDiasDeAtencion().contains(dia)) {
+            suc.getLstDiasDeAtencion().add(dia);
+            sucursalDao.actualizar(suc);
+        } else {
+            System.out.println("La sucursal ya tiene asignado ese dia de atencion.");
+        }
+    }
+
+    public void removerDiaDeAtencion(int idSucursal, int idDiasAtencion) {
+        Sucursal suc = sucursalDao.traer(idSucursal);
+        
+        if (suc == null) {
+            throw new IllegalArgumentException("ERROR: no existe una sucursal con ID: " + idSucursal);
+        }
+        DiasDeAtencion dia = diasAtencionABM.traer(idDiasAtencion);
+        
+        if (dia == null) {
+            throw new IllegalArgumentException("ERROR: no existe un dia de atencion con ID: " + idDiasAtencion);
+        }
+        if (suc.getLstDiasDeAtencion().contains(dia)) {
+            suc.getLstDiasDeAtencion().remove(dia);
+            sucursalDao.actualizar(suc);
+        } else {
+            System.out.println("La sucursal no tiene asignado ese dia de atencion.");
+        }
     }
 }

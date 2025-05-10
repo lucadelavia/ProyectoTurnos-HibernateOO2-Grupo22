@@ -120,5 +120,13 @@ public class TestSistema {
         dia1.setNombre("Martes");
         DiasDeAtencion diaModificado = diasDeAtencionABM.modificarDiaDeAtencion(dia1);
         System.out.println("Dia de atencion modificado: " + diaModificado);
+        
+        sucursalABM.asociarDiaDeAtencion(suc.getId(), dia1.getId());
+        Sucursal sucursalConDia = sucursalABM.traer(suc.getId());
+        System.out.println("Sucursal con dia de atencion asociado: " + sucursalConDia);
+        
+        sucursalABM.removerDiaDeAtencion(suc.getId(), dia1.getId());
+        Sucursal sucursalSinDia = sucursalABM.traer(suc.getId());
+        System.out.println("Sucursal despues de remover dia de atencion: " + sucursalSinDia);
     }
 }

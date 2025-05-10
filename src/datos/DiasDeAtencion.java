@@ -15,9 +15,6 @@ public class DiasDeAtencion {
     public DiasDeAtencion() {
         super();
     }
-    
-    // METODOS DE LA CLASE
-    //
 
     @Override
     public boolean equals(Object obj) {
