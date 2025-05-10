@@ -17,6 +17,7 @@
     <mapping file="src/mapeos/Sucursal.hbm.xml"/>
 	<mapping file="src/mapeos/Turno.hbm.xml"/>
 	<mapping file="src/mapeos/Usuario.hbm.xml"/>
+	<mapping file="src/mapeos/DiasDeAtencion.hbm.xml"/>
 
 
 

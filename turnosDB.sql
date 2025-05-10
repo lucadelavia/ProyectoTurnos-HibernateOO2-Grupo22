@@ -55,13 +55,18 @@ CREATE TABLE sucursales (
   CONSTRAINT fk_sucursales_establecimiento FOREIGN KEY (idestablecimiento) REFERENCES establecimientos(idestablecimiento)
 ) ENGINE=InnoDB;
 
-CREATE TABLE puntosDeAtencion (
-  idpuntoDeAtencion     INT NOT NULL AUTO_INCREMENT,
-  numeroPuntoDeAtencion INT,
-  sucursal_id            INT,
-  empleado_id           INT,
-  PRIMARY KEY (idpuntoDeAtencion),
-  CONSTRAINT fk_puntos_sucursal FOREIGN KEY (sucursal_id) REFERENCES sucursales(idsucursal)
+CREATE TABLE diasDeAtencion (
+  idDiasDeAtencion INT NOT NULL AUTO_INCREMENT,
+  nombre           VARCHAR(50),
+  PRIMARY KEY (idDiasDeAtencion)
+) ENGINE=InnoDB;
+
+CREATE TABLE diasDeAtencion_sucursal (
+  sucursal_id INT,
+  diasDeAtencion_id INT,
+  PRIMARY KEY (sucursal_id, diasDeAtencion_id),
+  CONSTRAINT fk_diasDeAtencion FOREIGN KEY (diasDeAtencion_id) REFERENCES diasDeAtencion(idDiasDeAtencion),
+  CONSTRAINT fk_sucursal FOREIGN KEY (sucursal_id) REFERENCES sucursales(idsucursal)
 ) ENGINE=InnoDB;
 
 CREATE TABLE Servicios (

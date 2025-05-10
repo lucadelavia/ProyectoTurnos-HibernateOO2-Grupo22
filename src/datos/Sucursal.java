@@ -13,6 +13,7 @@ public class Sucursal {
 	private Time horaApertura;
 	private Time horaCierre;
 	private List<Especialidad>lstEspecialidad;
+	private List<DiasDeAtencion> lstDiasDeAtencion;
 	private Establecimiento establecimiento;
 	
 	public Sucursal(String direccion, String telefono, Time horaApertura, Time horaCierre) {
@@ -22,6 +23,7 @@ public class Sucursal {
 		this.horaApertura = horaApertura;
 		this.horaCierre = horaCierre;
 		this.lstEspecialidad = new ArrayList<Especialidad>();
+		this.lstDiasDeAtencion = new ArrayList<>();
 	}
 
 	public Sucursal() {
@@ -44,7 +46,7 @@ public class Sucursal {
 	@Override
 	public String toString() {
 		return "Sucursal [id=" + id + ", direccion=" + direccion + ", telefono=" + telefono + ", horaApertura="
-				+ horaApertura + ", horaCierre=" + horaCierre + "]";
+				+ horaApertura + ", horaCierre=" + horaCierre + ", lstDiasDeAtencion=" + lstDiasDeAtencion + "]";
 	}
 	
 	public int getId() {
@@ -82,6 +84,12 @@ public class Sucursal {
 	}
 	public void setLstEspecialidad(List<Especialidad> lstEspecialidad) {
 		this.lstEspecialidad = lstEspecialidad;
+	}
+	public List<DiasDeAtencion> getLstDiasDeAtencion() {
+		return lstDiasDeAtencion;
+	}
+	public void setLstDiasDeAtencion(List<DiasDeAtencion> lstDiasDeAtencion) {
+		this.lstDiasDeAtencion = lstDiasDeAtencion;
 	}
     public Establecimiento getEstablecimiento() {
         return establecimiento;

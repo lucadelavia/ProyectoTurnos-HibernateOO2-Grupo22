@@ -1,0 +1,10 @@
+<!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="datos">
+    <class name="DiasDeAtencion" table="diasDeAtencion">
+        <id name="id" column="idDiasDeAtencion" type="integer">
+            <generator class="identity"/>
+        </id>
+        <property name="nombre" column="nombre" type="string"/>
+    </class>
+</hibernate-mapping>

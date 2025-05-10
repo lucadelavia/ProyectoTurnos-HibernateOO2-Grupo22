@@ -19,6 +19,11 @@
       <key column="sucursal_id"/>
       <many-to-many class="datos.Especialidad" column="especialidad_id"/>
     </bag>
+    
+    <bag name="lstDiasDeAtencion" table="diasDeAtencion_sucursal" inverse="true" lazy="true">
+      <key column="sucursal_id"/>
+      <many-to-many class="datos.DiasDeAtencion" column="diasDeAtencion_id"/>
+    </bag>
 
   </class>
 </hibernate-mapping>

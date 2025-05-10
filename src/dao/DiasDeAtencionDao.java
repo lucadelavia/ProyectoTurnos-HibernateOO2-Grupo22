@@ -1,13 +1,12 @@
 package dao;
 
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import datos.Sucursal;
+import datos.DiasDeAtencion;
 
-public class SucursalDao {
+public class DiasDeAtencionDao {
     private static Session session;
     private Transaction tx;
 
@@ -21,7 +20,7 @@ public class SucursalDao {
         throw new HibernateException("ERROR en la capa de acceso a datos", he);
     }
 
-    public int agregar(Sucursal objeto) {
+    public int agregar(DiasDeAtencion objeto) {
         int id = 0;
         try {
             iniciaOperacion();
@@ -34,49 +33,39 @@ public class SucursalDao {
         }
         return id;
     }
-    
-    public Sucursal traer(int id) {
-        Sucursal objeto = null;
-        try {
-            iniciaOperacion();
-            objeto = session.get(Sucursal.class, id);
-            
-            if (objeto != null) {
-                if (objeto.getEstablecimiento() != null) {
-                    Hibernate.initialize(objeto.getEstablecimiento().getSucursales());
-                }
-                Hibernate.initialize(objeto.getLstDiasDeAtencion());
-            }
 
-        } finally {
-            session.close();
-        }
-        return objeto;
-    }
-    
-    public void actualizar(Sucursal objeto) {
+    public void actualizar(DiasDeAtencion objeto) {
         try {
             iniciaOperacion();
             session.update(objeto);
             tx.commit();
         } catch (HibernateException he) {
             manejaExcepcion(he);
-            throw he;
         } finally {
             session.close();
         }
     }
 
-    public void eliminar(Sucursal objeto) {
+    public void eliminar(DiasDeAtencion objeto) {
         try {
             iniciaOperacion();
             session.delete(objeto);
             tx.commit();
         } catch (HibernateException he) {
             manejaExcepcion(he);
-            throw he;
         } finally {
             session.close();
         }
+    }
+
+    public DiasDeAtencion traer(int idDiasDeAtencion) {
+        DiasDeAtencion objeto = null;
+        try {
+            iniciaOperacion();
+            objeto = (DiasDeAtencion) session.get(DiasDeAtencion.class, idDiasDeAtencion);
+        } finally {
+            session.close();
+        }
+        return objeto;
     }
 }
