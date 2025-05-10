@@ -58,17 +58,17 @@ public class TestSistema {
         Especialidad mod = abm.modificarEspecialidad(e);
         System.out.println("Especialidad modificada: " + mod);
 
-//        ServicioABM servicioABM = new ServicioABM();
-//        Servicio servicio = servicioABM.altaServicio("Atencion Medica", 1);
-//        System.out.println("Servicio Creado: " + servicio);
-//
-//        servicio.setDuracion(2);
-//        Servicio servicio_modificado = servicioABM.modificarServicio(servicio);
-//        System.out.println("Servicio modificado: " + servicio_modificado);
+        ServicioABM servicioABM = new ServicioABM();
+        Servicio servicio = servicioABM.altaServicio("Atencion Medica", 1);
+        System.out.println("Servicio Creado: " + servicio);
+
+        servicio.setDuracion(2);
+        Servicio servicio_modificado = servicioABM.modificarServicio(servicio);
+        System.out.println("Servicio modificado: " + servicio_modificado);
 
         
-        //        abm.bajaEspecialidad(mod.getId());
-//        System.out.println("Especialidad eliminada con ID: " + mod.getId());
+        abm.bajaEspecialidad(mod.getId());
+        System.out.println("Especialidad eliminada con ID: " + mod.getId());
         
         EstablecimientoABM establecimientoABM = new EstablecimientoABM();
 
@@ -106,11 +106,11 @@ public class TestSistema {
         Sucursal sucModificada = sucursalABM.modificarSucursal(suc);
         System.out.println("Sucursal modificada: " + sucModificada);
         
-        // establecimientoABM.removerSucursalDeEstablecimiento(est.getId(), suc.getId());
-        // Establecimiento estSinSucursal = establecimientoABM.traer(est.getId());
-        // System.out.println("Establecimiento sin sucursal: " + estSinSucursal);
-        // Sucursal sucDesasociada = sucursalABM.traer(suc.getId());
-        // System.out.println("Sucursal: " + sucDesasociada);
+        establecimientoABM.removerSucursalDeEstablecimiento(est.getId(), suc.getId());
+        Establecimiento estSinSucursal = establecimientoABM.traer(est.getId());
+        System.out.println("Establecimiento sin sucursal: " + estSinSucursal);
+        Sucursal sucDesasociada = sucursalABM.traer(suc.getId());
+        System.out.println("Sucursal: " + sucDesasociada);
         
         DiasDeAtencionABM diasDeAtencionABM = new DiasDeAtencionABM();
 

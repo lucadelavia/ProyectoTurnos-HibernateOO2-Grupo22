@@ -15,12 +15,12 @@
 	<property name="estado"   column="estado"   type="boolean"/>
 	<property name="fechaAlta" column="fechaAlta" type="org.hibernate.type.LocalDateTimeType"/>
 
-  <joined-subclass name="datos.Cliente" table="cliente">
+  <joined-subclass name="datos.Cliente" table="clientes">
     <key column="idCliente" />
     <property column="nroCliente" name="nroCliente" type="integer" />
   </joined-subclass>
 
-  <joined-subclass name="datos.Empleado" table="empleado">
+  <joined-subclass name="datos.Empleado" table="empleados">
     <key column="idEmpleado" />
     <property name="cuil"       column="cuil"       type="string"/>
     <property name="matricula"  column="matricula"  type="string"/>
