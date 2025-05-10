@@ -12,7 +12,7 @@
     <property name="horaApertura"  column="horarioApertura" type="time"/>
     <property name="horaCierre"    column="horarioCierre"  type="time"/>
     
-    <many-to-one name="establecimiento" class="datos.Establecimiento" column="idestablecimiento" not-null="false"/>
+    <many-to-one name="establecimiento" class="datos.Establecimiento" column="idestablecimiento"/>
     
     <bag name="lstEspecialidad" table="especialidad_sucursal"
          inverse="true" lazy="true">

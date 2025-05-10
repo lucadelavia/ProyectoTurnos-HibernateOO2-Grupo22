@@ -42,8 +42,9 @@ public class SucursalABM {
 
     public Sucursal traer(int idSucursal) {
         Sucursal suc = sucursalDao.traer(idSucursal);
+        
         if (suc == null) {
-            throw new IllegalArgumentException("ERROR: No existe un establecimiento con ID: " + idSucursal);
+            throw new IllegalArgumentException("ERROR: no existe una sucursal con ID: " + idSucursal);
         }
         return suc;
     }

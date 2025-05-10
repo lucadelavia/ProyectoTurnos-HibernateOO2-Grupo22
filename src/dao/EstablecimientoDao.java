@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import datos.Establecimiento;
+import datos.Sucursal;
 
 public class EstablecimientoDao {
 	private static Session session;
@@ -109,5 +110,20 @@ public class EstablecimientoDao {
 		} finally {
 			session.close();
 		}
+	}
+	
+	public void removerSucursal(Establecimiento est, Sucursal suc) {
+	    try {
+	        iniciaOperacion();
+	        est.getSucursales().remove(suc);
+	        suc.setEstablecimiento(null);
+	        session.update(suc);
+	        tx.commit();
+	    } catch (HibernateException he) {
+	        manejaExcepcion(he);
+	        throw he;
+	    } finally {
+	        session.close();
+	    }
 	}
 }

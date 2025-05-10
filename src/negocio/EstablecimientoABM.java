@@ -72,6 +72,20 @@ public class EstablecimientoABM {
         suc.setEstablecimiento(est);
         establecimientoDao.actualizar(est);
     }
+    
+    public void removerSucursalDeEstablecimiento(int idEst, int idSuc) {
+	    Establecimiento est = establecimientoDao.traer(idEst);
+	    
+	    if (est == null) {
+	        throw new IllegalArgumentException("ERROR: no existe establecimiento con ID: " + idEst);
+	    }
+	    Sucursal suc = sucursalABM.traer(idSuc);
+	    if (suc == null) {
+	        throw new IllegalArgumentException("ERROR: no existe sucursal con ID: " + idSuc);
+	    }
+	    if (!est.getSucursales().contains(suc)) {
+	        throw new IllegalStateException("La sucursal no pertenece a ese establecimiento");
+	    }
+	    establecimientoDao.removerSucursal(est, suc);
+	}
 }
-
-// public void removerSucursal(int idEst, int idSuc);

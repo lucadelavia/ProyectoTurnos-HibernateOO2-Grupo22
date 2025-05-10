@@ -29,18 +29,16 @@ public class Sucursal {
 	}
 	
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Sucursal other = (Sucursal) obj;
-		return Objects.equals(direccion, other.direccion) && Objects.equals(establecimiento, other.establecimiento)
-				&& Objects.equals(horaApertura, other.horaApertura) && Objects.equals(horaCierre, other.horaCierre)
-				&& id == other.id && Objects.equals(lstEspecialidad, other.lstEspecialidad)
-				&& Objects.equals(telefono, other.telefono);
+	public boolean equals(Object o) {
+	    if (this == o) return true;
+	    if (!(o instanceof Sucursal)) return false;
+	    Sucursal that = (Sucursal) o;
+	    return id == that.id;
+	}
+
+	@Override
+	public int hashCode() {
+	    return Objects.hash(id);
 	}
 
 	@Override

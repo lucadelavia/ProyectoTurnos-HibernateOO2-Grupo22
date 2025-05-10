@@ -35,7 +35,7 @@ public class SucursalDao {
         return id;
     }
     
-    public Sucursal traer(int id) throws HibernateException {
+    public Sucursal traer(int id) {
         Sucursal objeto = null;
         try {
             iniciaOperacion();
