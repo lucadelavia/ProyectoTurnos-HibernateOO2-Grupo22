@@ -1,21 +1,37 @@
 package negocio;
 
-//import java.util.List;
-
 import datos.Empleado;
 import datos.Especialidad;
-//import datos.Turno;
+
+import java.time.LocalDateTime;
+
 import dao.EmpleadoDao;
 import dao.EspecialidadDao;
-//import dao.TurnoDao;
-
 
 public class EmpleadoABM {
 
 	private final EmpleadoDao empleadoDao = new EmpleadoDao();
-//	private final TurnoDao turnoDao = new TurnoDao();
 	private final EspecialidadDao especialidadDao = new EspecialidadDao();
 
+	
+	public Empleado altaEmpleado(String nombre, String apellido, String email, String direccion, int dni, boolean estado,
+            LocalDateTime fechaAlta, int cuil, String matricula){
+
+		Empleado e = new Empleado(nombre, apellido, email, direccion, dni, estado, fechaAlta, cuil, matricula);
+		
+		if (empleadoDao.traerPorDni(e.getDni()) != null) {
+			throw new IllegalArgumentException("ERROR: Ya existe un empleado con ese DNI");
+		}
+
+		if (empleadoDao.traerPorCuil(e.getCuil()) != null) {
+			throw new IllegalArgumentException("ERROR: Ya existe un empleado con ese CUIL");
+		}
+
+		empleadoDao.agregar(e);
+
+		return e;
+	}	
+	
 	public Empleado altaEmpleado(Empleado e){
 
 		if (empleadoDao.traerPorDni(e.getDni()) != null) {
@@ -106,9 +122,5 @@ public class EmpleadoABM {
 	    empleadoDao.actualizar(e);
 		
 	}
-	
-	//  public List<Especialidad> listarEspecialidades(int idEmpleado);
-	//
-	//  public List<Turno> verTurnosAsignados(int idEmpleado);
 
 }
