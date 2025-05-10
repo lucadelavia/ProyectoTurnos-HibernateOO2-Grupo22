@@ -91,8 +91,7 @@ public class TestSistema {
                 "Av. Oeste 500", 
                 "3811234567", 
                 Time.valueOf("09:00:00"),  
-                Time.valueOf("18:00:0"
-                		+ "0")
+                Time.valueOf("18:00:00")
             );
         System.out.println("Sucursal: " + suc);
         
@@ -104,5 +103,11 @@ public class TestSistema {
         suc.setDireccion("Av. Este 500");
         Sucursal sucModificada = sucursalABM.modificarSucursal(suc);
         System.out.println("Sucursal modificada: " + sucModificada);
+        
+        // establecimientoABM.removerSucursalDeEstablecimiento(est.getId(), suc.getId());
+        // Establecimiento estSinSucursal = establecimientoABM.traer(est.getId());
+        // System.out.println("Establecimiento sin sucursal: " + estSinSucursal);
+        // Sucursal sucDesasociada = sucursalABM.traer(suc.getId());
+        // System.out.println("Sucursal: " + sucDesasociada);
     }
 }
