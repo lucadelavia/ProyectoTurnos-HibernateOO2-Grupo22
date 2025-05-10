@@ -16,5 +16,11 @@
                  column="cliente_id"
                  not-null="true"
                  fetch="select"/>
+
+    <many-to-one name="sucursal"
+                 class="datos.Sucursal"
+                 column="sucursal_id"
+                 not-null="true"
+                 fetch="select"/>
   </class>
 </hibernate-mapping>

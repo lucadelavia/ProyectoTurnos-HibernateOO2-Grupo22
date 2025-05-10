@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import datos.Servicio;
+import datos.Sucursal;
 import datos.Turno;
 import dao.TurnoDao;
 import datos.Cliente;
@@ -13,8 +14,8 @@ public class TurnoABM {
 
     private final TurnoDao turnoDao = new TurnoDao();
 
-    public Turno altaTurno(LocalDateTime fechaHora, boolean estadoActivo, String codigo, Servicio servicio, Cliente cliente){
-		Turno t = new Turno(fechaHora, estadoActivo, codigo, servicio, cliente);
+    public Turno altaTurno(LocalDateTime fechaHora, boolean estadoActivo, String codigo, Servicio servicio, Cliente cliente, Sucursal sucursal){
+		Turno t = new Turno(fechaHora, estadoActivo, codigo, servicio, cliente, sucursal);
 		if(turnoDao.traer(t.getId()) != null){
 			throw new IllegalArgumentException("Este turno ya existe.");
 		}

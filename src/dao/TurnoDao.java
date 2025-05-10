@@ -7,7 +7,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import datos.Servicio;
 import datos.Turno;
 
 public class TurnoDao {
@@ -39,7 +38,7 @@ public class TurnoDao {
         return id;
     }
     
-    public Turno traer(long idTurno) {
+    public Turno traer(int idTurno) {
     	Turno objeto = null;
 		try {
 			iniciaOperacion();
@@ -80,7 +79,7 @@ public class TurnoDao {
 		List<Turno> turnos = null;
         try {
             iniciaOperacion();
-            String hql = "SELECT t.* FROM Turno t WHERE t.puntoDeAtencion_id IN (SELECT p.idpuntoDeAtencion FROM PuntoDeAtencion p WHERE p.idpuntoDeAtencion IN(SELECT s.puntoDeAtencion_id FROM Sucursal s WHERE s.idsucursal = :idsucursal))";
+            String hql = "SELECT t.* FROM Turno t WHERE t.sucursal_id = :idsucursal))";
             turnos = (List<Turno>) session.createQuery(hql).setParameter("idsucursal", idSucursal).getResultList();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);

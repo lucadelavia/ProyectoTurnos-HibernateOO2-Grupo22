@@ -10,13 +10,15 @@ public class Turno {
 	private String codigo;
 	private Servicio servicio;
 	private Cliente cliente;
+	private Sucursal sucursal;
 
-	public Turno(LocalDateTime fechaHora, boolean estado, String codigo, Servicio servicio, Cliente cliente) {
+	public Turno(LocalDateTime fechaHora, boolean estado, String codigo, Servicio servicio, Cliente cliente, Sucursal sucursal) {
 		this.fechaHora = fechaHora;
 		this.estado = estado;
 		this.codigo = codigo;
 		this.servicio = servicio;
 		this.cliente = cliente;
+		this.sucursal = sucursal;
 	}
 
 	public int getId() {
@@ -67,11 +69,20 @@ public class Turno {
 		this.cliente = cliente;
 	}
 
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
+	}
+
 	@Override
 	public String toString() {
 		return "Turno [id=" + id + ", fechaHora=" + fechaHora + ", estado=" + estado + ", codigo=" + codigo
-				+ ", servicio=" + servicio + ", cliente=" + cliente + "]";
+				+ ", servicio=" + servicio + ", cliente=" + cliente + ", sucursal=" + sucursal + "]";
 	}
+
 	
 	
 	
