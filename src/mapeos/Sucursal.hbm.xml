@@ -11,6 +11,7 @@
     <property name="telefono"      column="telefono"        type="string"/>
     <property name="horaApertura"  column="horarioApertura" type="time"/>
     <property name="horaCierre"    column="horarioCierre"  type="time"/>
+    <property name="espacio" column="espacio" type="integer"/>
     
     <many-to-one name="establecimiento" class="datos.Establecimiento" column="idestablecimiento"/>
     

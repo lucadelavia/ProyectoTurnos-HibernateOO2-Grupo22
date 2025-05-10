@@ -11,8 +11,19 @@ public class SucursalABM {
 	private final SucursalDao sucursalDao = new SucursalDao();
 	private DiasDeAtencionABM diasAtencionABM = new DiasDeAtencionABM();
 
-    public Sucursal altaSucursal(String direccion, String telefono, Time horaApertura, Time horaCierre) {
-        Sucursal suc = new Sucursal(direccion, telefono, horaApertura, horaCierre);
+    public Sucursal altaSucursal(String direccion, String telefono, Time horaApertura, Time horaCierre, int espacio) {
+	    if (sucursalDao.traerPorTelefono(telefono) != null) {
+	        throw new IllegalArgumentException("ERROR: ya existe una sucursal con el telefono: " + telefono);
+	    }
+	    Sucursal suc = new Sucursal(direccion, telefono, horaApertura, horaCierre, espacio);
+	    sucursalDao.agregar(suc);
+	    return suc;
+	}
+	
+	public Sucursal altaSucursal(Sucursal suc) {
+        if (sucursalDao.traerPorTelefono(suc.getTelefono()) != null) {
+            throw new IllegalArgumentException("ERROR: ya existe una sucursal con el telefono: " + suc.getTelefono());
+        }
         sucursalDao.agregar(suc);
         return suc;
     }

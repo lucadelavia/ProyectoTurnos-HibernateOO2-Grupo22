@@ -12,6 +12,11 @@ public class DiasDeAtencionABM {
         diasDeAtencionDao.agregar(dia);
         return dia;
     }
+    
+    public DiasDeAtencion altaDiaDeAtencion(DiasDeAtencion dia) {
+        diasDeAtencionDao.agregar(dia);
+        return dia;
+    }
 
     public void bajaDiaDeAtencion(int id) {
         DiasDeAtencion dia = diasDeAtencionDao.traer(id);

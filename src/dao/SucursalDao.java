@@ -54,6 +54,21 @@ public class SucursalDao {
         return objeto;
     }
     
+    public Sucursal traerPorTelefono(String telefono) {
+        Sucursal sucursal = null;
+        try {
+            iniciaOperacion();
+            sucursal = (Sucursal) session.createQuery("from Sucursal s where s.telefono = :telefono")
+                    .setParameter("telefono", telefono)
+                    .uniqueResult();
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+        } finally {
+            session.close();
+        }
+        return sucursal;
+    }
+    
     public void actualizar(Sucursal objeto) {
         try {
             iniciaOperacion();

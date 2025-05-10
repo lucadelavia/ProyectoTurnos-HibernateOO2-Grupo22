@@ -63,6 +63,7 @@ CREATE TABLE sucursales (
     telefono VARCHAR(255),
     horarioApertura TIME,
     horarioCierre TIME,
+    espacio INT,
     idestablecimiento INT,
     FOREIGN KEY (idestablecimiento) REFERENCES establecimientos(idestablecimiento)
 );

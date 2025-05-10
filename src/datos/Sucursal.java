@@ -12,16 +12,18 @@ public class Sucursal {
 	private String telefono;
 	private Time horaApertura;
 	private Time horaCierre;
+	private int espacio;
 	private List<Especialidad>lstEspecialidad;
 	private List<DiasDeAtencion> lstDiasDeAtencion;
 	private Establecimiento establecimiento;
 	
-	public Sucursal(String direccion, String telefono, Time horaApertura, Time horaCierre) {
+	public Sucursal(String direccion, String telefono, Time horaApertura, Time horaCierre, int espacio) {
 		super();
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.horaApertura = horaApertura;
 		this.horaCierre = horaCierre;
+		this.espacio = espacio;
 		this.lstEspecialidad = new ArrayList<Especialidad>();
 		this.lstDiasDeAtencion = new ArrayList<>();
 	}
@@ -46,7 +48,8 @@ public class Sucursal {
 	@Override
 	public String toString() {
 		return "Sucursal [id=" + id + ", direccion=" + direccion + ", telefono=" + telefono + ", horaApertura="
-				+ horaApertura + ", horaCierre=" + horaCierre + ", lstDiasDeAtencion=" + lstDiasDeAtencion + "]";
+				+ horaApertura + ", horaCierre=" + horaCierre + ", espacio=" + espacio + ", diasDeAtencion="
+				+ lstDiasDeAtencion + "]";
 	}
 	
 	public int getId() {
@@ -78,6 +81,12 @@ public class Sucursal {
 	}
 	public void setHoraCierre(Time horaCierre) {
 		this.horaCierre = horaCierre;
+	}
+	public int getEspacio() {
+		return espacio;
+	}
+	public void setEspacio(int espacio) {
+		this.espacio = espacio;
 	}
 	public List<Especialidad> getLstEspecialidad() {
 		return lstEspecialidad;

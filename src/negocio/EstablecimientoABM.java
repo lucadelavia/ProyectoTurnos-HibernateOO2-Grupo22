@@ -13,10 +13,21 @@ public class EstablecimientoABM {
 		Establecimiento est = new Establecimiento(nombre, cuit, direccion, descripcion);
 		
 	    if (establecimientoDao.traerPorNombreEstablecimiento(nombre) != null) {
-	        throw new IllegalArgumentException("Ya existe un establecimiento con el nombre: " + nombre);
+	        throw new IllegalArgumentException("ERROR: ya existe un establecimiento con el nombre: " + nombre);
 	    }	    
 	    if (establecimientoDao.traerPorCuitEstablecimiento(cuit) != null) {
-	        throw new IllegalArgumentException("Ya existe un establecimiento con el CUIT: " + cuit);
+	        throw new IllegalArgumentException("ERROR: ya existe un establecimiento con el CUIT: " + cuit);
+	    }
+	    establecimientoDao.agregar(est);
+	    return est;
+	}
+	
+	public Establecimiento altaEstablecimiento(Establecimiento est) {
+	    if (establecimientoDao.traerPorNombreEstablecimiento(est.getNombre()) != null) {
+	        throw new IllegalArgumentException("ERROR: ya existe un establecimiento con el nombre: " + est.getNombre());
+	    }
+	    if (establecimientoDao.traerPorCuitEstablecimiento(est.getCuit()) != null) {
+	        throw new IllegalArgumentException("ERROR: ya existe un establecimiento con el CUIT: " + est.getCuit());
 	    }
 	    establecimientoDao.agregar(est);
 	    return est;
