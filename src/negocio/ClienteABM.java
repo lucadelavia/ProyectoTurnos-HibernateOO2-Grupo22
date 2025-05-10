@@ -1,17 +1,23 @@
 package negocio;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import datos.Turno;
 import dao.ClienteDao;
-import dao.TurnoDao;
-import dao.SucursalDao;
-import dao.EspecialidadDao;
-import dao.ServicioDao;
-import org.hibernate.SessionFactory;
-import dao.HibernateUtil;
+
+import datos.Cliente;
 
 public class ClienteABM {
+
+    private final ClienteDao clienteDao = new ClienteDao();
+
+    public Cliente altaCliente(String nombre, String apellido, String email, String direccion, int dni, boolean estado, LocalDateTime fechaAlta, int nroCliente){
+		Cliente c = new Cliente(nombre, apellido, email, direccion, dni, estado, fechaAlta, nroCliente);
+		if(clienteDao.traer(c.getId()) != null){
+			throw new IllegalArgumentException("Este cliente ya existe.");
+		}
+		clienteDao.agregar(c);
+
+		return c;
+	}
 
 //    public List<Turno> consultarTurnosDisponibles(int idServicio);
 //    public void elegirSucursal(int idCliente, int idSucursal);

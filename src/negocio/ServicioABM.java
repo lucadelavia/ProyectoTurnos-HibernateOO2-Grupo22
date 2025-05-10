@@ -17,6 +17,15 @@ public class ServicioABM {
 		return s;
 	}
 
+    public Servicio altaServicio(Servicio servicio){
+		if(servicioDao.traerPorNombreServicio(servicio.getNombreServicio()) != null){
+			throw new IllegalArgumentException("Este Servicio ya existe.");
+		}
+		servicioDao.agregar(servicio);
+
+		return servicio;
+	}
+
     public Servicio obtenerServicioPorNombre(String nombreServicio){
         Servicio s = servicioDao.traerPorNombreServicio(nombreServicio);
         if(s == null){

@@ -7,7 +7,7 @@
       <generator class="identity"/>
     </id>
 
-    <property name="fechaHora" column="fechaHora" type="timestamp"/>
+    <property name="fechaHora" column="fechaHora" type="org.hibernate.type.LocalDateTimeType"/>
     <property name="estado"    column="estadoActivo" type="boolean"/>
     <property name="codigo"    column="codigo"        type="string"/>
 

@@ -2,10 +2,13 @@ package dao;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import org.hibernate.query.Query;
 
 import datos.Turno;
 
@@ -76,25 +79,32 @@ public class TurnoDao {
 	}
 	
 	public List<Turno> obtenerTurnosPorSucursal(int idSucursal){
-		List<Turno> turnos = null;
+		List<Turno> turnos_query = null;
+		List<Turno> turnos = new ArrayList<Turno>();
         try {
             iniciaOperacion();
-            String hql = "SELECT t.* FROM Turno t WHERE t.sucursal_id = :idsucursal))";
-            turnos = (List<Turno>) session.createQuery(hql).setParameter("idsucursal", idSucursal).getResultList();
+            String hql = "FROM Turno WHERE sucursal_id = :idsucursal";
+            Query<Turno> query = session.createQuery(hql).setParameter("idsucursal", idSucursal);
+			turnos_query = query.getResultList();
+			for(int i = 0; i <= turnos_query.size()-1;i++){
+				Turno turno = turnos_query.get(i);
+				System.out.println(turno);
+				turnos.add(turno);
+			}
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
             session.close();
         }
-        return turnos;
+		return turnos;
 	}
 
 	public List<Turno> obtenerTurnosPorEmpleado(int idEmpleado){
 		List<Turno> turnos = null;
         try {
             iniciaOperacion();
-            String hql = "SELECT t.* FROM Turno t INNER JOIN PuntoDeAtencion pda ON t.puntoDeAtencion_id = pda.idpuntoDeAtencion WHERE pda.empleado_id = :idEmpleado";
+            String hql = "FROM Turno t INNER JOIN PuntoDeAtencion pda ON t.puntoDeAtencion_id = pda.idpuntoDeAtencion WHERE pda.empleado_id = :idEmpleado";
             turnos = (List<Turno>) session.createQuery(hql).setParameter("idEmpleado", idEmpleado).getResultList();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -109,7 +119,7 @@ public class TurnoDao {
 		List<Turno> turnos = null;
         try {
             iniciaOperacion();
-            String hql = "SELECT t.* FROM Turno t WHERE CAST(t.fechaHora AS DATE) = :fecha";
+            String hql = "FROM Turno t WHERE CAST(t.fechaHora AS DATE) = :fecha";
             turnos = (List<Turno>) session.createQuery(hql).setParameter("fecha", fecha).getResultList();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -124,7 +134,7 @@ public class TurnoDao {
 		List<Turno> turnos = null;
         try {
             iniciaOperacion();
-            String hql = "SELECT t.* FROM Turno t WHERE CAST(t.fechaHora AS DATE) BETWEEN :fechaDesde AND :fechaHasta";
+            String hql = "FROM Turno t WHERE CAST(t.fechaHora AS DATE) BETWEEN :fechaDesde AND :fechaHasta";
             turnos = (List<Turno>) session.createQuery(hql).setParameter("fechaDesde", desde).setParameter("fechaHasta", hasta).getResultList();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);

@@ -21,6 +21,10 @@ public class Turno {
 		this.sucursal = sucursal;
 	}
 
+	public Turno(){
+		
+	}
+
 	public int getId() {
 		return id;
 	}
