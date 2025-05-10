@@ -1,6 +1,7 @@
 package dao;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -78,70 +79,79 @@ public class TurnoDao {
 		}
 	}
 	
-	public List<Turno> obtenerTurnosPorSucursal(int idSucursal){
-		List<Turno> turnos_query = null;
-		List<Turno> turnos = new ArrayList<Turno>();
+    public List<Turno> obtenerTurnosPorSucursal(int idSucursal) {
+        List<Turno> turnos = new ArrayList<>();
         try {
             iniciaOperacion();
-            String hql = "FROM Turno WHERE sucursal_id = :idsucursal";
-            Query<Turno> query = session.createQuery(hql).setParameter("idsucursal", idSucursal);
-			turnos_query = query.getResultList();
-			for(int i = 0; i <= turnos_query.size()-1;i++){
-				Turno turno = turnos_query.get(i);
-				System.out.println(turno);
-				turnos.add(turno);
-			}
-		} catch (HibernateException he) {
-			manejaExcepcion(he);
-			throw he;
-		} finally {
-            session.close();
-        }
-		return turnos;
-	}
-
-	public List<Turno> obtenerTurnosPorEmpleado(int idEmpleado){
-		List<Turno> turnos = null;
-        try {
-            iniciaOperacion();
-            String hql = "FROM Turno t INNER JOIN PuntoDeAtencion pda ON t.puntoDeAtencion_id = pda.idpuntoDeAtencion WHERE pda.empleado_id = :idEmpleado";
-            turnos = (List<Turno>) session.createQuery(hql).setParameter("idEmpleado", idEmpleado).getResultList();
-		} catch (HibernateException he) {
-			manejaExcepcion(he);
-			throw he;
-		} finally {
+            String hql = "FROM Turno t WHERE t.sucursal.id = :idsucursal";
+            Query<Turno> query = session.createQuery(hql, Turno.class).setParameter("idsucursal", idSucursal);
+            turnos = query.getResultList();
+            for (Turno turno : turnos) {
+                System.out.println(turno);
+            }
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
             session.close();
         }
         return turnos;
-	}
+    }
 
-	public List<Turno> obtenerTurnosPorFecha(LocalDate fecha){
-		List<Turno> turnos = null;
+    public List<Turno> obtenerTurnosPorEmpleado(int idEmpleado) {
+        List<Turno> turnos = null;
         try {
             iniciaOperacion();
-            String hql = "FROM Turno t WHERE CAST(t.fechaHora AS DATE) = :fecha";
-            turnos = (List<Turno>) session.createQuery(hql).setParameter("fecha", fecha).getResultList();
-		} catch (HibernateException he) {
-			manejaExcepcion(he);
-			throw he;
-		} finally {
+            String hql = "FROM Turno t WHERE t.puntoDeAtencion.empleado.id = :idEmpleado";
+            Query<Turno> query = session.createQuery(hql, Turno.class).setParameter("idEmpleado", idEmpleado);
+            turnos = query.getResultList();
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
             session.close();
         }
         return turnos;
-	}
+    }
 
-	public List<Turno> obtenerTurnosPorRangoFechas(LocalDate desde, LocalDate hasta){
-		List<Turno> turnos = null;
+    public List<Turno> obtenerTurnosPorFecha(LocalDate fecha) {
+        List<Turno> turnos = null;
         try {
             iniciaOperacion();
-            String hql = "FROM Turno t WHERE CAST(t.fechaHora AS DATE) BETWEEN :fechaDesde AND :fechaHasta";
-            turnos = (List<Turno>) session.createQuery(hql).setParameter("fechaDesde", desde).setParameter("fechaHasta", hasta).getResultList();
-		} catch (HibernateException he) {
-			manejaExcepcion(he);
-			throw he;
-		} finally {
+            LocalDateTime inicio = fecha.atStartOfDay();
+            LocalDateTime fin = fecha.plusDays(1).atStartOfDay();
+            String hql = "FROM Turno t WHERE t.fechaHora >= :inicio AND t.fechaHora < :fin";
+            Query<Turno> query = session.createQuery(hql, Turno.class)
+                .setParameter("inicio", inicio)
+                .setParameter("fin", fin);
+            turnos = query.getResultList();
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
             session.close();
         }
         return turnos;
-	}
+    }
+
+    public List<Turno> obtenerTurnosPorRangoFechas(LocalDate desde, LocalDate hasta) {
+        List<Turno> turnos = null;
+        try {
+            iniciaOperacion();
+            LocalDateTime inicio = desde.atStartOfDay();
+            LocalDateTime fin = hasta.plusDays(1).atStartOfDay();
+            String hql = "FROM Turno t WHERE t.fechaHora >= :inicio AND t.fechaHora < :fin";
+            Query<Turno> query = session.createQuery(hql, Turno.class)
+                .setParameter("inicio", inicio)
+                .setParameter("fin", fin);
+            turnos = query.getResultList();
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
+            session.close();
+        }
+        return turnos;
+    }
 }
+

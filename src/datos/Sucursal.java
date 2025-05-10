@@ -12,7 +12,7 @@ public class Sucursal {
 	private String telefono;
 	private Time horaApertura;
 	private Time horaCierre;
-	private int espacio;
+	private Integer espacio;
 	private List<Especialidad>lstEspecialidad;
 	private List<DiasDeAtencion> lstDiasDeAtencion;
 	private Establecimiento establecimiento;
