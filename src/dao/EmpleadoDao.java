@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 
 import datos.Empleado;
 
+
 public class EmpleadoDao {
 	private static Session session;
     private Transaction tx;
@@ -35,7 +36,7 @@ public class EmpleadoDao {
         return id;
     }
     
-    public Empleado traer(long idEmpleado) {
+    public Empleado traer(int idEmpleado) {
     	Empleado objeto = null;
 		try {
 			iniciaOperacion();
@@ -46,6 +47,34 @@ public class EmpleadoDao {
 		return objeto;
 	}
 
+    public Empleado traerPorDni(int dni) {
+    	Empleado empleado = null;
+        try {
+            iniciaOperacion();
+            empleado = (Empleado) session
+                .createQuery("FROM Empleados WHERE dni = :d")
+                .setParameter("d", dni)
+                .uniqueResult();
+        } finally {
+            session.close();
+        }
+        return empleado;
+    }
+    
+    public Empleado traerPorCuil(int cuil) {
+    	Empleado empleado = null;
+        try {
+            iniciaOperacion();
+            empleado = (Empleado) session
+                .createQuery("FROM Empleados WHERE cuil = :c")
+                .setParameter("c", cuil)
+                .uniqueResult();
+        } finally {
+            session.close();
+        }
+        return empleado;
+    }
+    
 	public void actualizar(Empleado objeto) {
 		try {
 			iniciaOperacion();

@@ -22,7 +22,7 @@
 
   <joined-subclass name="datos.Empleado" table="empleados">
     <key column="idEmpleado" />
-    <property name="cuil"       column="cuil"       type="string"/>
+    <property name="cuil"       column="cuil"       type="integer"/>
     <property name="matricula"  column="matricula"  type="string"/>
 
     <bag name="lstEspecialidades" table="empleado_especialidad"

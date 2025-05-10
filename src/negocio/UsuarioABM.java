@@ -55,11 +55,7 @@ public class UsuarioABM {
     
     public Usuario modificarUsuario(Usuario u) {
     	
-        Usuario actual = usuarioDao.traer(u.getId());
-        
-        if (actual == null) {
-        	throw new IllegalArgumentException("ERROR: No existe usuario con ID: " + u.getId());
-        }
+        Usuario actual = obtenerUsuarioPorId(u.getId());
         
         actual.setNombre(u.getNombre());
         actual.setApellido(u.getApellido());

@@ -7,12 +7,12 @@ import java.util.Objects;
 
 public class Empleado extends Usuario {
 
-	private String cuil;
+	private int cuil;
 	private String matricula;
 	private List<Especialidad>lstEspecialidades;
 	
 	public Empleado(String nombre, String apellido, String email, String direccion, int dni, boolean estado,
-            LocalDateTime fechaAlta, String cuil, String matricula) {
+            LocalDateTime fechaAlta, int cuil, String matricula) {
 			super(nombre, apellido, email, direccion, dni, estado, fechaAlta);
 			this.cuil = cuil;
 			this.matricula = matricula;
@@ -48,10 +48,10 @@ public class Empleado extends Usuario {
 				+ getFechaAlta() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 
-	public String getCuil() {
+	public int getCuil() {
 		return cuil;
 	}
-	public void setCuil(String cuil) {
+	public void setCuil(int cuil) {
 		this.cuil = cuil;
 	}
 	public String getMatricula() {
