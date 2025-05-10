@@ -2,8 +2,10 @@ package test;
 
 import negocio.UsuarioABM;
 import datos.Usuario;
+import negocio.DiasDeAtencionABM;
 import negocio.EspecialidadABM;
 import negocio.EstablecimientoABM;
+import datos.DiasDeAtencion;
 import datos.Especialidad;
 import datos.Establecimiento;
 import negocio.ServicioABM;
@@ -109,5 +111,14 @@ public class TestSistema {
         // System.out.println("Establecimiento sin sucursal: " + estSinSucursal);
         // Sucursal sucDesasociada = sucursalABM.traer(suc.getId());
         // System.out.println("Sucursal: " + sucDesasociada);
+        
+        DiasDeAtencionABM diasDeAtencionABM = new DiasDeAtencionABM();
+
+        DiasDeAtencion dia1 = diasDeAtencionABM.altaDiaDeAtencion("Lunes");
+        System.out.println("Dia de atencion creado: " + dia1);
+
+        dia1.setNombre("Martes");
+        DiasDeAtencion diaModificado = diasDeAtencionABM.modificarDiaDeAtencion(dia1);
+        System.out.println("Dia de atencion modificado: " + diaModificado);
     }
 }
