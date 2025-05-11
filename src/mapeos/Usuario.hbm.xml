@@ -25,7 +25,7 @@
     <property name="cuil"       column="cuil"       type="integer"/>
     <property name="matricula"  column="matricula"  type="string"/>
 
-	<set name="lstEspecialidades" table="empleado_especialidad" inverse="true" lazy="true">
+	<set name="lstEspecialidades" table="empleado_especialidad" cascade="all" lazy="false">
 	    <key column="empleado_id"/>
 	    <many-to-many class="datos.Especialidad" column="especialidad_id"/>
 	</set>

@@ -15,10 +15,9 @@
     
     <many-to-one name="establecimiento" class="datos.Establecimiento" column="idestablecimiento"/>
     
-	<set name="lstEspecialidad" table="especialidad_sucursal"
-	     inverse="true" lazy="true">
-	  <key column="sucursal_id"/>
-	  <many-to-many class="datos.Especialidad" column="especialidad_id"/>
+	<set name="lstEspecialidad" table="especialidad_sucursal" cascade="all">
+	    <key column="sucursal_id"/>
+	    <many-to-many class="datos.Especialidad" column="especialidad_id"/>
 	</set>
 	
 	<set name="lstDiasDeAtencion" table="diasDeAtencion_sucursal" inverse="false" lazy="true">

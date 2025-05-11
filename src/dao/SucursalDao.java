@@ -46,6 +46,7 @@ public class SucursalDao {
                     Hibernate.initialize(objeto.getEstablecimiento().getSucursales());
                 }
                 Hibernate.initialize(objeto.getLstDiasDeAtencion());
+                Hibernate.initialize(objeto.getLstEspecialidad());
             }
 
         } finally {
@@ -53,6 +54,7 @@ public class SucursalDao {
         }
         return objeto;
     }
+
     
     public Sucursal traerPorTelefono(String telefono) {
         Sucursal sucursal = null;

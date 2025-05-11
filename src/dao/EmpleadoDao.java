@@ -36,15 +36,18 @@ public class EmpleadoDao {
         return id;
     }
     
-    public Empleado traer(int idEmpleado) {
-    	Empleado objeto = null;
-		try {
-			iniciaOperacion();
-			objeto = (Empleado) session.get(Empleado.class, idEmpleado);
-		} finally {
-			session.close();
-		}
-		return objeto;
+	public Empleado traer(int idEmpleado) {
+	    Empleado empleado = null;
+	    try {
+	        iniciaOperacion();
+	        empleado = (Empleado) session
+	            .createQuery("FROM Empleado e LEFT JOIN FETCH e.lstEspecialidades WHERE e.id = :id")
+	            .setParameter("id", idEmpleado)
+	            .uniqueResult();
+	    } finally {
+	        session.close();
+	    }
+	    return empleado;
 	}
 
     public Empleado traerPorDni(int dni) {
