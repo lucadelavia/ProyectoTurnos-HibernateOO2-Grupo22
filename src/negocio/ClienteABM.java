@@ -19,6 +19,50 @@ public class ClienteABM {
 		return c;
 	}
 
+	public Cliente altaCliente(Cliente cliente){
+		if(clienteDao.traer(cliente.getId()) != null){
+			throw new IllegalArgumentException("Este cliente ya existe.");
+		}
+		clienteDao.agregar(cliente);
+
+		return cliente;
+	}
+
+	public Cliente obtenerClientePorId(int id){
+
+		Cliente c = clienteDao.traer(id);
+
+		if (c == null) {
+			throw new IllegalArgumentException("ERROR: No existe el cliente solicitado");
+		}
+
+		return c;
+
+	}
+
+	public void bajaCliente(int id) {
+
+		clienteDao.eliminar(clienteDao.traer(id));;
+
+	}
+	
+	public Cliente modificarCliente(Cliente c) {
+		
+		Cliente actual = obtenerClientePorId(c.getId());
+		
+		actual.setNombre(c.getNombre());
+		actual.setApellido(c.getApellido());
+		actual.setEmail(c.getEmail());
+		actual.setDireccion(c.getDireccion());
+		actual.setDni(c.getDni());
+		actual.setEstado(c.isEstado());
+		actual.setNroCliente(c.getNroCliente());
+		
+		clienteDao.actualizar(actual);
+		
+		return actual;
+	}
+
 //    public void elegirSucursal(int idCliente, int idSucursal);
 //    public void elegirEspecialidad(int idCliente, int idEspecialidad);
 //    public void elegirServicio(int idCliente, int idServicio);
