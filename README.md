@@ -1,16 +1,16 @@
 # Sistema de Turnos
 
+Este proyecto es una aplicación de gestión de turnos desarrollada en **Java 17** utilizando **Hibernate sin anotaciones JPA**.  
+Permite administrar usuarios, empleados, clientes, turnos, especialidades, sucursales y más, con persistencia en base de datos MySQL.
+
+---
+
 ## 👥 Grupo 22 - Integrantes
 
 - **De La Via, Luca Ernesto**  
 - **Mohamed, Valentina Belén**  
 - **Sdrubolini, Sebastián Ariel**  
 - **Szpitalnik, Gael Lautaro**
-
----
-
-Este proyecto es una aplicación de gestión de turnos desarrollada en **Java 17** utilizando **Hibernate sin anotaciones JPA**.  
-Permite administrar usuarios, empleados, clientes, turnos, especialidades, sucursales y más, con persistencia en base de datos MySQL.
 
 ---
 
