@@ -9,13 +9,14 @@ import datos.Sucursal;
 import datos.Turno;
 import dao.TurnoDao;
 import datos.Cliente;
+import datos.Empleado;
 
 public class TurnoABM {
 
     private final TurnoDao turnoDao = new TurnoDao();
 
-    public Turno altaTurno(LocalDateTime fechaHora, boolean estadoActivo, String codigo, Servicio servicio, Cliente cliente, Sucursal sucursal){
-		Turno t = new Turno(fechaHora, estadoActivo, codigo, servicio, cliente, sucursal);
+    public Turno altaTurno(LocalDateTime fechaHora, boolean estadoActivo, String codigo, Servicio servicio, Cliente cliente, Empleado empleado, Sucursal sucursal){
+		Turno t = new Turno(fechaHora, estadoActivo, codigo, servicio, cliente, sucursal, empleado);
 		if(turnoDao.traer(t.getId()) != null){
 			throw new IllegalArgumentException("Este turno ya existe.");
 		}
@@ -70,16 +71,6 @@ public class TurnoABM {
         }
         return turnos;
         }
-
-
-    public List<Turno> obtenerTurnosPorEmpleado(int idEmpleado){
-        List<Turno> turnos = turnoDao.obtenerTurnosPorEmpleado(idEmpleado);
-        if(turnos == null){
-            throw new IllegalArgumentException("ERROR: No hay turnos con este empleado.");
-        }
-        return turnos;
-        }
-
 
     public List<Turno> obtenerTurnosPorFecha(LocalDate fecha){
         List<Turno> turnos = turnoDao.obtenerTurnosPorFecha(fecha);

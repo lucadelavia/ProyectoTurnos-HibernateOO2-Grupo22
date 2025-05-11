@@ -15,16 +15,16 @@
     
     <many-to-one name="establecimiento" class="datos.Establecimiento" column="idestablecimiento"/>
     
-    <bag name="lstEspecialidad" table="especialidad_sucursal"
-         inverse="true" lazy="true">
-      <key column="sucursal_id"/>
-      <many-to-many class="datos.Especialidad" column="especialidad_id"/>
-    </bag>
-    
-    <bag name="lstDiasDeAtencion" table="diasDeAtencion_sucursal" inverse="false" lazy="true">
-      <key column="sucursal_id"/>
-      <many-to-many class="datos.DiasDeAtencion" column="diasDeAtencion_id"/>
-    </bag>
+	<set name="lstEspecialidad" table="especialidad_sucursal"
+	     inverse="true" lazy="true">
+	  <key column="sucursal_id"/>
+	  <many-to-many class="datos.Especialidad" column="especialidad_id"/>
+	</set>
+	
+	<set name="lstDiasDeAtencion" table="diasDeAtencion_sucursal" inverse="false" lazy="true">
+	  <key column="sucursal_id"/>
+	  <many-to-many class="datos.DiasDeAtencion" column="diasDeAtencion_id"/>
+	</set>
 
   </class>
 </hibernate-mapping>

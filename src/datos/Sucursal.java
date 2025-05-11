@@ -1,9 +1,9 @@
 package datos;
 
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Sucursal {
 
@@ -13,8 +13,8 @@ public class Sucursal {
 	private Time horaApertura;
 	private Time horaCierre;
 	private Integer espacio;
-	private List<Especialidad>lstEspecialidad;
-	private List<DiasDeAtencion> lstDiasDeAtencion;
+	private Set<Especialidad> lstEspecialidad;
+	private Set<DiasDeAtencion> lstDiasDeAtencion;
 	private Establecimiento establecimiento;
 	
 	public Sucursal(String direccion, String telefono, Time horaApertura, Time horaCierre, int espacio) {
@@ -24,8 +24,8 @@ public class Sucursal {
 		this.horaApertura = horaApertura;
 		this.horaCierre = horaCierre;
 		this.espacio = espacio;
-		this.lstEspecialidad = new ArrayList<Especialidad>();
-		this.lstDiasDeAtencion = new ArrayList<>();
+		this.lstEspecialidad = new HashSet<>();
+		this.lstDiasDeAtencion = new HashSet<>();
 	}
 
 	public Sucursal() {
@@ -88,16 +88,16 @@ public class Sucursal {
 	public void setEspacio(int espacio) {
 		this.espacio = espacio;
 	}
-	public List<Especialidad> getLstEspecialidad() {
+	public Set<Especialidad> getLstEspecialidad() {
 		return lstEspecialidad;
 	}
-	public void setLstEspecialidad(List<Especialidad> lstEspecialidad) {
+	public void setLstEspecialidad(Set<Especialidad> lstEspecialidad) {
 		this.lstEspecialidad = lstEspecialidad;
 	}
-	public List<DiasDeAtencion> getLstDiasDeAtencion() {
+	public Set<DiasDeAtencion> getLstDiasDeAtencion() {
 		return lstDiasDeAtencion;
 	}
-	public void setLstDiasDeAtencion(List<DiasDeAtencion> lstDiasDeAtencion) {
+	public void setLstDiasDeAtencion(Set<DiasDeAtencion> lstDiasDeAtencion) {
 		this.lstDiasDeAtencion = lstDiasDeAtencion;
 	}
     public Establecimiento getEstablecimiento() {

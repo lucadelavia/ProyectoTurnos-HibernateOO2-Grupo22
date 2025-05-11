@@ -16,10 +16,22 @@
                  column="cliente_id"
                  not-null="true"
                  fetch="select"/>
+                 
+  	<many-to-one name="empleado"
+	             class="datos.Empleado"
+	             column="empleado_id"
+	             not-null="true"
+	             fetch="select"/>
 
     <many-to-one name="sucursal"
                  class="datos.Sucursal"
                  column="sucursal_id"
+                 not-null="true"
+                 fetch="select"/>
+                 
+   	<many-to-one name="servicio"
+                 class="datos.Servicio"
+                 column="servicio_id"
                  not-null="true"
                  fetch="select"/>
   </class>

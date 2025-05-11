@@ -1,22 +1,16 @@
 package test;
 
 import negocio.UsuarioABM;
-import datos.Usuario;
-import negocio.DiasDeAtencionABM;
-import negocio.EmpleadoABM;
-import negocio.EspecialidadABM;
-import negocio.EstablecimientoABM;
-import datos.Cliente;
-import datos.DiasDeAtencion;
-import datos.Empleado;
-import datos.Especialidad;
-import datos.Establecimiento;
 import negocio.ServicioABM;
 import negocio.SucursalABM;
-import datos.Turno;
 import negocio.TurnoABM;
+import negocio.EmpleadoABM;
+
+import datos.Cliente;
 import datos.Servicio;
 import datos.Sucursal;
+import datos.Turno;
+import datos.Empleado;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,68 +18,85 @@ import java.util.List;
 
 public class TestTurno {
 
-	public static void main(String[] args) {
-		
-		Cliente cliente = new Cliente(
-		    "Juan",
-		    "Gómez",
-		    "juan.gomez@exampl.com",
-		    "Calle Falsa 123",
-		    40111323,
-		    true,
-		    LocalDateTime.now(),
-		    1001
-		);
-		
-		UsuarioABM usuarioABM = new UsuarioABM();
-		cliente = (Cliente) usuarioABM.altaUsuario(cliente);
+    public static void main(String[] args) {
 
-		TurnoABM turnoABM = new TurnoABM();
-		ServicioABM servicioABM = new ServicioABM();
-		SucursalABM sucursalABM = new SucursalABM();
+        // Crear y guardar un cliente
+        Cliente cliente = new Cliente(
+            "Juan",
+            "Gómez",
+            "yuangomez@example.com.",
+            "Calle Falsa 123",
+            12345422,
+            true,
+            LocalDateTime.now(),
+            1001
+        );
+        UsuarioABM usuarioABM = new UsuarioABM();
+        cliente = (Cliente) usuarioABM.altaUsuario(cliente);
 
-		Sucursal sucursal = sucursalABM.traer(1);
-		Servicio servicio = servicioABM.obtenerServicioPorNombre("Atencion Medica");
-		
-		Turno turno = turnoABM.altaTurno(LocalDateTime.of(2025, 5, 10, 17, 0, 0), true, "1a2", servicio, cliente, sucursal);
-		System.out.println(turno);
+        // Obtener sucursal y servicio ya existentes
+        SucursalABM sucursalABM = new SucursalABM();
+        Sucursal sucursal = sucursalABM.traer(1); // Asegurate que exista
 
-		List<Turno> turnos = turnoABM.obtenerTurnosPorSucursal(1);
-		System.out.println(turnos);
+        ServicioABM servicioABM = new ServicioABM();
+        Servicio servicio = servicioABM.obtenerServicioPorNombre("Atencion Medica"); // Asegurate que exista
 
-		System.out.println("\n== Turnos por Sucursal ==");
-		try {
-			List<Turno> turnosSucursal = turnoABM.obtenerTurnosPorSucursal(sucursal.getId());
-			turnosSucursal.forEach(System.out::println);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+        // Crear y guardar un empleado
+        EmpleadoABM empleadoABM = new EmpleadoABM();
+        Empleado empleado = new Empleado(
+            "Carlos",
+            "Pérez",
+            "carlo.perez@example.com",
+            "Av. Trabajo 456",
+            33838962,
+            true,
+            LocalDateTime.now(),
+            871234297,
+            "MAT1234"
+        );
+        empleado = empleadoABM.altaEmpleado(empleado);
 
-		System.out.println("\n== Turnos por Empleado ==");
-		try {
-			List<Turno> turnosEmpleado = turnoABM.obtenerTurnosPorEmpleado(1); // Asegurarse que exista
-			turnosEmpleado.forEach(System.out::println);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+        // Crear y guardar un turno
+        TurnoABM turnoABM = new TurnoABM();
+        Turno turno = new Turno(
+            LocalDateTime.of(2025, 5, 10, 17, 0),
+            true,
+            "1a2",
+            servicio,
+            cliente,
+            sucursal,
+            empleado
+        );
+        turno = turnoABM.altaTurno(turno);
+        System.out.println("Turno creado:\n" + turno);
 
-		System.out.println("\n== Turnos por Fecha ==");
-		try {
-			List<Turno> turnosFecha = turnoABM.obtenerTurnosPorFecha(LocalDate.of(2025, 5, 10));
-			turnosFecha.forEach(System.out::println);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+        // === Consultas ===
 
-		System.out.println("\n== Turnos por Rango de Fechas ==");
-		try {
-			List<Turno> turnosRango = turnoABM.obtenerTurnosPorRangoFechas(
-				LocalDate.of(2025, 5, 1),
-				LocalDate.of(2025, 5, 15)
-			);
-			turnosRango.forEach(System.out::println);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
+        System.out.println("\n== Turnos por Sucursal ==");
+        try {
+            List<Turno> turnosSucursal = turnoABM.obtenerTurnosPorSucursal(sucursal.getId());
+            turnosSucursal.forEach(System.out::println);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("\n== Turnos por Fecha ==");
+        try {
+            List<Turno> turnosFecha = turnoABM.obtenerTurnosPorFecha(LocalDate.of(2025, 5, 10));
+            turnosFecha.forEach(System.out::println);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("\n== Turnos por Rango de Fechas ==");
+        try {
+            List<Turno> turnosRango = turnoABM.obtenerTurnosPorRangoFechas(
+                LocalDate.of(2025, 5, 1),
+                LocalDate.of(2025, 5, 15)
+            );
+            turnosRango.forEach(System.out::println);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

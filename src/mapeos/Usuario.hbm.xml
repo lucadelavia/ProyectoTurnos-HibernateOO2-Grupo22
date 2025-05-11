@@ -25,11 +25,10 @@
     <property name="cuil"       column="cuil"       type="integer"/>
     <property name="matricula"  column="matricula"  type="string"/>
 
-	<bag name="lstEspecialidades" table="empleado_especialidad"
-	     inverse="false" lazy="true" cascade="all">
-	  <key column="empleado_id"/>
-	  <many-to-many class="datos.Especialidad" column="especialidad_id"/>
-	</bag>
+	<set name="lstEspecialidades" table="empleado_especialidad" inverse="true" lazy="true">
+	    <key column="empleado_id"/>
+	    <many-to-many class="datos.Especialidad" column="especialidad_id"/>
+	</set>
   </joined-subclass>
 
   </class>

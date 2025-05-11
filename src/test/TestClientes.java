@@ -1,28 +1,25 @@
 package test;
 
 import negocio.UsuarioABM;
-import datos.Usuario;
 import datos.Cliente;
-import negocio.ClienteABM;
-
-import java.time.LocalDateTime;
+//import negocio.ClienteABM;
 
 public class TestClientes {
 
 	public static void main(String[] args) {
-		ClienteABM clienteABM = new ClienteABM();
+		//ClienteABM clienteABM = new ClienteABM();
 
 		
-		Cliente cliente = clienteABM.altaCliente(
-            "Sev", 
-            "Sdru", 
-            "sevsdru@example.com", 
-            "Tucu 1630", 
-            40945930,
-			true,
-			java.time.LocalDateTime.now(),
-			18
-        );
+//		Cliente cliente = clienteABM.altaCliente(
+//            "Sev", 
+//            "Sdru", 
+//            "sevsdru@example.com", 
+//            "Tucu 1630", 
+//            40945930,
+//			true,
+//			java.time.LocalDateTime.now(),
+//			18
+//        );
 
 		UsuarioABM usuarioABM = new UsuarioABM();
 
