@@ -18,7 +18,7 @@ public class TestSistema {
         SucursalABM sucursalABM = new SucursalABM();
         TurnoABM turnoABM = new TurnoABM();
         DiasDeAtencionABM diasABM = new DiasDeAtencionABM();
-        EstablecimientoABM establecimientoABM = new EstablecimientoABM(); // ✅ agregado
+        EstablecimientoABM establecimientoABM = new EstablecimientoABM();
 
         // Alta Sucursal y Establecimiento
         Time apertura = Time.valueOf("08:00:00");
@@ -70,7 +70,7 @@ public class TestSistema {
 
         // Cliente
         c1.setDireccion("Nueva Dirección 123");
-        // clienteABM.modificarCliente(c1); // Habilitá si tenés este método
+        clienteABM.modificarCliente(c1);
         System.out.println("Cliente modificado: " + c1.getNombre() + " -> " + c1.getDireccion());
 
         // Empleado
@@ -110,51 +110,15 @@ public class TestSistema {
         diasABM.modificarDiaDeAtencion(dia);
         System.out.println("Día de atención modificado: " + dia.getNombre());
         
-//        System.out.println("\n=== BAJAS ===");
-//
-//     // 1. Turno (se debe eliminar antes que cliente/empleado/sucursal/servicio)
-//     turnoABM.bajaTurno(t3);
-//     System.out.println("Turno dado de baja: " + t3.getCodigo());
-//
-//     // 2. Remover especialidad de sucursal
-//     sucursalABM.removerEspecialidad(suc.getId(), esp3);
-//     System.out.println("Especialidad removida de sucursal.");
-//
-//     // 3. Eliminar especialidad (ya sin referencias)
-//     especialidadABM.bajaEspecialidad(esp3.getId());
-//     System.out.println("Especialidad dada de baja: " + esp3.getNombre());
-//
-//     // 4. Eliminar servicio
-//     servicioABM.bajaServicio(s3);
-//     System.out.println("Servicio dado de baja: " + s3.getNombreServicio());
-//
-////     // 5. Eliminar cliente
-////     clienteABM.bajaCliente(c3.getId());
-////     System.out.println("Cliente dado de baja: " + c3.getNombre());
-//
-//     // 6. Eliminar empleado (ya sin especialidad referida)
-//     empleadoABM.bajaEmpleado(e3.getId());
-//     System.out.println("Empleado dado de baja: " + e3.getNombre());
-//
-//     // 7. Remover día de atención de la sucursal
-//     sucursalABM.removerDiaDeAtencion(suc.getId(), dia.getId());
-//     System.out.println("Día de atención removido de la sucursal.");
-//
-//     // 8. Eliminar día de atención
-//     diasABM.bajaDiaDeAtencion(dia.getId());
-//     System.out.println("Día de atención dado de baja: " + dia.getNombre());
-//
-//     // 9. Remover sucursal del establecimiento
-//     establecimientoABM.removerSucursalDeEstablecimiento(est.getId(), suc.getId());
-//     System.out.println("Sucursal removida del establecimiento.");
-//
-//     // 10. Eliminar sucursal
-//     sucursalABM.bajaSucursal(suc.getId());
-//     System.out.println("Sucursal dada de baja: " + suc.getDireccion());
-//
-//     // 11. Eliminar establecimiento
-//     establecimientoABM.bajaEstablecimiento(est.getId());
-//     System.out.println("Establecimiento dado de baja: " + est.getNombre());
+        // System.out.println("\n=== BAJAS ===");
+
+        // // 1. Turno (se debe eliminar antes que cliente/empleado/sucursal/servicio)
+        // turnoABM.bajaTurno(t3);
+        // System.out.println("Turno dado de baja: " + t3.getCodigo());
+
+        // // 2. Eliminar cliente
+        // clienteABM.bajaCliente(c3.getId());
+        // System.out.println("Cliente dado de baja: " + c3.getNombre());
 
 
         System.out.println("\n=== FIN DE PRUEBAS ===");
