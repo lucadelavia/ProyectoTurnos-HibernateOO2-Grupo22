@@ -48,8 +48,8 @@ Permite administrar usuarios, empleados, clientes, turnos, especialidades, sucur
 ### 1. Clonar o descargar el proyecto
 
 ```bash
-git clone https://github.com/tu-usuario/tu-repo.git
-cd tu-repo
+git clone https://github.com/lucadelavia/ProyectoTurnos-HibernateOO2-Grupo22
+cd ProyectoTurnos-HibernateOO2-Grupo22
 ```
 
 O descargalo como ZIP desde GitHub y descomprimilo.
