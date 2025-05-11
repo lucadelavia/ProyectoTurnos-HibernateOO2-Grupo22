@@ -60,8 +60,10 @@ public class TestSistema {
 
         // Turnos
         Turno t1 = turnoABM.altaTurno(LocalDateTime.now().plusDays(1).withHour(9), true, "T001", s1, c1, e1, suc);
-        Turno t2 = turnoABM.altaTurno(LocalDateTime.now().plusDays(2).withHour(10), true, "T002", s2, c2, e2, suc);
-        Turno t3 = turnoABM.altaTurno(LocalDateTime.now().plusDays(3).withHour(11), true, "T003", s3, c3, e3, suc);
+        @SuppressWarnings("unused")
+		Turno t2 = turnoABM.altaTurno(LocalDateTime.now().plusDays(2).withHour(10), true, "T002", s2, c2, e2, suc);
+        @SuppressWarnings("unused")
+		Turno t3 = turnoABM.altaTurno(LocalDateTime.now().plusDays(3).withHour(11), true, "T003", s3, c3, e3, suc);
 
         // === MODIFICACIONES ===
         System.out.println("\n=== MODIFICACIONES ===");
