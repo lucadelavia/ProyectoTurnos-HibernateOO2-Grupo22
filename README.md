@@ -91,8 +91,12 @@ Corré la clase `test/TestSistema.java` desde tu IDE. Este test realiza:
 - Asignación de días de atención y especialidades
 - Alta de turnos
 - Consultas por fecha, sucursal y rango
+- Modificaciones y Bajas a los registros
 
 Todos los resultados se imprimen por consola.
+
+(Cabe aclarar que los metodos de bajas permaneceran comentados para probar el alta y modificacion primero.
+Ademas no se incluyen todos los metodos en el test, pero si se encuentran implementados en sus clases correspondientes.)
 
 ---
 
