@@ -1,105 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-17.0.14.7-hotspot">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/antlr-2.7.7.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/byte-buddy-1.10.7.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/classmate-1.5.1.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/dom4j-2.1.1.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/FastInfoset-1.2.15.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/hibernate-commons-annotations-5.1.0.Final.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/hibernate-core-5.4.11.Final.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/istack-commons-runtime-3.0.7.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/jandex-2.1.1.Final.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/javassist-3.24.0-GA.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/javax.activation-api-1.2.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/javax.persistence-api-2.2.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/jaxb-api-2.3.1.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/jaxb-runtime-2.3.1.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/jboss-logging-3.3.2.Final.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/jboss-transaction-api_1.2_spec-1.1.1.Final.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/mysql-connector-java-8.0.19.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/stax-ex-1.8.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/lucad/OneDrive/Escritorio/Hibernate/txw2-2.3.1.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="lib/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="lib/byte-buddy-1.10.7.jar"/>
+	<classpathentry kind="lib" path="lib/classmate-1.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/dom4j-2.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/FastInfoset-1.2.15.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-commons-annotations-5.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-core-5.4.11.Final.jar"/>
+	<classpathentry kind="lib" path="lib/istack-commons-runtime-3.0.7.jar"/>
+	<classpathentry kind="lib" path="lib/jandex-2.1.1.Final.jar"/>
+	<classpathentry kind="lib" path="lib/javassist-3.24.0-GA.jar"/>
+	<classpathentry kind="lib" path="lib/javax.activation-api-1.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/javax.persistence-api-2.2.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-api-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-runtime-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jboss-logging-3.3.2.Final.jar"/>
+	<classpathentry kind="lib" path="lib/jboss-transaction-api_1.2_spec-1.1.1.Final.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-8.0.19.jar"/>
+	<classpathentry kind="lib" path="lib/stax-ex-1.8.jar"/>
+	<classpathentry kind="lib" path="lib/txw2-2.3.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

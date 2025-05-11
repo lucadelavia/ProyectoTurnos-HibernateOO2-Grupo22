@@ -1,58 +1,55 @@
 package datos;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Time;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Sucursal {
 
 	private int id;
 	private String direccion;
 	private String telefono;
-	private LocalTime horaApertura;
-	private LocalTime horaCierre;
-	private List<Especialidad>lstEspecialidad;
-	private List<PuntoDeAtencion>puntosDeAtencion;
+	private Time horaApertura;
+	private Time horaCierre;
+	private Integer espacio;
+	private Set<Especialidad> lstEspecialidad;
+	private Set<DiasDeAtencion> lstDiasDeAtencion;
+	private Establecimiento establecimiento;
 	
-	public Sucursal(String direccion, String telefono, LocalTime horaApertura, LocalTime horaCierre,
-			 List<PuntoDeAtencion> puntosDeAtencion) {
+	public Sucursal(String direccion, String telefono, Time horaApertura, Time horaCierre, int espacio) {
 		super();
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.horaApertura = horaApertura;
 		this.horaCierre = horaCierre;
-		this.lstEspecialidad = new ArrayList<Especialidad>();
-		this.puntosDeAtencion = puntosDeAtencion;
+		this.espacio = espacio;
+		this.lstEspecialidad = new HashSet<>();
+		this.lstDiasDeAtencion = new HashSet<>();
 	}
 
 	public Sucursal() {
 		super();
 	}
-
-	//METODOS DE LA CLASE
-//	+ altaSucursal(sucursal: Sucursal)
-//	+ bajaSucursal(id: int)
-//	+ modificarSucursal(sucursal: Sucursal)
 	
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Sucursal other = (Sucursal) obj;
-		return Objects.equals(direccion, other.direccion) && Objects.equals(horaApertura, other.horaApertura)
-				&& Objects.equals(horaCierre, other.horaCierre) && id == other.id
-				&& Objects.equals(puntosDeAtencion, other.puntosDeAtencion) && Objects.equals(telefono, other.telefono);
+	public boolean equals(Object o) {
+	    if (this == o) return true;
+	    if (!(o instanceof Sucursal)) return false;
+	    Sucursal that = (Sucursal) o;
+	    return id == that.id;
+	}
+
+	@Override
+	public int hashCode() {
+	    return Objects.hash(id);
 	}
 
 	@Override
 	public String toString() {
 		return "Sucursal [id=" + id + ", direccion=" + direccion + ", telefono=" + telefono + ", horaApertura="
-				+ horaApertura + ", horaCierre=" + horaCierre + ", puntosDeAtencion=" + puntosDeAtencion + "]";
+				+ horaApertura + ", horaCierre=" + horaCierre + ", espacio=" + espacio + ", diasDeAtencion="
+				+ lstDiasDeAtencion + "]";
 	}
 	
 	public int getId() {
@@ -73,31 +70,40 @@ public class Sucursal {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public LocalTime getHoraApertura() {
+	public Time getHoraApertura() {
 		return horaApertura;
 	}
-	public void setHoraApertura(LocalTime horaApertura) {
+	public void setHoraApertura(Time horaApertura) {
 		this.horaApertura = horaApertura;
 	}
-	public LocalTime getHoraCierre() {
+	public Time getHoraCierre() {
 		return horaCierre;
 	}
-	public void setHoraCierre(LocalTime horaCierre) {
+	public void setHoraCierre(Time horaCierre) {
 		this.horaCierre = horaCierre;
 	}
-	public List<Especialidad> getLstEspecialidad() {
+	public int getEspacio() {
+		return espacio;
+	}
+	public void setEspacio(int espacio) {
+		this.espacio = espacio;
+	}
+	public Set<Especialidad> getLstEspecialidad() {
 		return lstEspecialidad;
 	}
-	public void setLstEspecialidad(List<Especialidad> lstEspecialidad) {
+	public void setLstEspecialidad(Set<Especialidad> lstEspecialidad) {
 		this.lstEspecialidad = lstEspecialidad;
 	}
-	public List<PuntoDeAtencion> getPuntosDeAtencion() {
-		return puntosDeAtencion;
+	public Set<DiasDeAtencion> getLstDiasDeAtencion() {
+		return lstDiasDeAtencion;
 	}
-	public void setPuntosDeAtencion(List<PuntoDeAtencion> puntosDeAtencion) {
-		this.puntosDeAtencion = puntosDeAtencion;
+	public void setLstDiasDeAtencion(Set<DiasDeAtencion> lstDiasDeAtencion) {
+		this.lstDiasDeAtencion = lstDiasDeAtencion;
 	}
-	
-	
-	
+    public Establecimiento getEstablecimiento() {
+        return establecimiento;
+    }
+    public void setEstablecimiento(Establecimiento establecimiento) {
+        this.establecimiento = establecimiento;
+    }
 }

@@ -1,8 +1,8 @@
 package datos;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Establecimiento {
 
@@ -11,7 +11,7 @@ public class Establecimiento {
 	private String cuit;
 	private String direccion;
 	private String descripcion;
-	private List<Sucursal>sucursales;
+	private Set<Sucursal> sucursales;
 	
 	public Establecimiento() {
 		super();
@@ -23,16 +23,9 @@ public class Establecimiento {
 		this.cuit = cuit;
 		this.direccion = direccion;
 		this.descripcion = descripcion;
-		this.sucursales = new ArrayList<Sucursal>();
+		this.sucursales = new HashSet<Sucursal>();
 	}
 
-	//METODOS DE LA CLASE
-//	+ altaEstablecimiento(establecimiento: Establecimiento)
-//	+ bajaEstablecimiento(id: int)
-//	+ modificarEstablecimiento(establecimiento: Establecimiento)
-//	+ asociarSucursalAEstablecimiento(idSucursal: int, establecimiento: Establecimiento)
-//	+ removerSucursal(establecimiento: Establecimiento, idSucursal: int)
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -83,14 +76,10 @@ public class Establecimiento {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public List<Sucursal> getSucursales() {
+	public Set<Sucursal> getSucursales() {
 		return sucursales;
 	}
-	public void setSucursales(List<Sucursal> sucursales) {
+	public void setSucursales(Set<Sucursal> sucursales) {
 		this.sucursales = sucursales;
 	}
-	
-	
-	
-	
 }

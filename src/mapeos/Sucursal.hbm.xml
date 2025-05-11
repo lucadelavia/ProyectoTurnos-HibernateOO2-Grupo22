@@ -1,0 +1,29 @@
+<!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="datos">
+  <class name="Sucursal" table="sucursales">
+    
+    <id name="id" column="idsucursal" type="integer">
+      <generator class="identity"/>
+    </id>
+
+    <property name="direccion"     column="direccion"       type="string"/>
+    <property name="telefono"      column="telefono"        type="string"/>
+    <property name="horaApertura"  column="horarioApertura" type="time"/>
+    <property name="horaCierre"    column="horarioCierre"  type="time"/>
+    <property name="espacio" column="espacio" type="integer"/>
+    
+    <many-to-one name="establecimiento" class="datos.Establecimiento" column="idestablecimiento"/>
+    
+	<set name="lstEspecialidad" table="especialidad_sucursal" cascade="all">
+	    <key column="sucursal_id"/>
+	    <many-to-many class="datos.Especialidad" column="especialidad_id"/>
+	</set>
+	
+	<set name="lstDiasDeAtencion" table="diasDeAtencion_sucursal" inverse="false" lazy="true">
+	  <key column="sucursal_id"/>
+	  <many-to-many class="datos.DiasDeAtencion" column="diasDeAtencion_id"/>
+	</set>
+
+  </class>
+</hibernate-mapping>

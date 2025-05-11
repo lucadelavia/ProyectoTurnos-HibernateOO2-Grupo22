@@ -29,14 +29,22 @@ public class Usuario {
 		this.fechaAlta = fechaAlta;
 	}
 	
+	public Usuario(String nombre, String apellido, String email, String direccion, int dni) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.direccion = direccion;
+		this.dni = dni;
+	}
+	
 	//METODOS DE LA CLASE
 	
-	//public boolean altaUsuario(Usuario usuario);
-	//public boolean bajaUsuario(int id);
-	//public boolean modificarUsuario(Usuario usuario);
-	//public Usuario obtenerUsuarioPorId(int id);
-	//public Usuario obtenerUsuarioPorDNI(int dni);
-	//public Usuario obtenerUsuarioPorEmail(String email);
+//	public Usuario altaUsuario(Usuario usuario);
+//  public void bajaUsuario(int id);
+//  public Usuario modificarUsuario(Usuario u);
+//  public Usuario obtenerUsuarioPorId(int id);
+//  public Usuario obtenerUsuarioPorDNI(int dni);
+//  public Usuario obtenerUsuarioPorEmail(String email);
 		
 	@Override
 	public boolean equals(Object obj) {

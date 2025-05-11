@@ -1,0 +1,38 @@
+<!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="datos">
+  <class name="Turno" table="Turnos">
+    
+    <id name="id" column="idTurno" type="integer">
+      <generator class="identity"/>
+    </id>
+
+    <property name="fechaHora" column="fechaHora" type="org.hibernate.type.LocalDateTimeType"/>
+    <property name="estado"    column="estadoActivo" type="boolean"/>
+    <property name="codigo"    column="codigo"        type="string"/>
+
+    <many-to-one name="cliente"
+                 class="datos.Cliente"
+                 column="cliente_id"
+                 not-null="true"
+                 fetch="select"/>
+                 
+  	<many-to-one name="empleado"
+	             class="datos.Empleado"
+	             column="empleado_id"
+	             not-null="true"
+	             fetch="select"/>
+
+    <many-to-one name="sucursal"
+                 class="datos.Sucursal"
+                 column="sucursal_id"
+                 not-null="true"
+                 fetch="select"/>
+                 
+   	<many-to-one name="servicio"
+                 class="datos.Servicio"
+                 column="servicio_id"
+                 not-null="true"
+                 fetch="select"/>
+  </class>
+</hibernate-mapping>

@@ -1,22 +1,22 @@
 package datos;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Empleado extends Usuario {
 
-	private String cuil;
+	private int cuil;
 	private String matricula;
-	private List<Especialidad>lstEspecialidades;
+	private Set<Especialidad>lstEspecialidades;
 	
 	public Empleado(String nombre, String apellido, String email, String direccion, int dni, boolean estado,
-            LocalDateTime fechaAlta, String cuil, String matricula) {
+            LocalDateTime fechaAlta, int cuil, String matricula) {
 			super(nombre, apellido, email, direccion, dni, estado, fechaAlta);
 			this.cuil = cuil;
 			this.matricula = matricula;
-			this.lstEspecialidades = new ArrayList<Especialidad>();
+			this.lstEspecialidades = new HashSet<Especialidad>();
 	}
 
 	public Empleado() {
@@ -48,10 +48,10 @@ public class Empleado extends Usuario {
 				+ getFechaAlta() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 
-	public String getCuil() {
+	public int getCuil() {
 		return cuil;
 	}
-	public void setCuil(String cuil) {
+	public void setCuil(int cuil) {
 		this.cuil = cuil;
 	}
 	public String getMatricula() {
@@ -60,12 +60,16 @@ public class Empleado extends Usuario {
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
-	public List<Especialidad> getLstEspecialidades() {
+
+	public Set<Especialidad> getLstEspecialidades() {
 		return lstEspecialidades;
 	}
-	public void setLstEspecialidades(List<Especialidad> lstEspecialidades) {
+
+	public void setLstEspecialidades(Set<Especialidad> lstEspecialidades) {
 		this.lstEspecialidades = lstEspecialidades;
 	}
+
+	
 	
 	
 	

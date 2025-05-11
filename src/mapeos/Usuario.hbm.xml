@@ -1,0 +1,35 @@
+<!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="datos">
+  <class name="Usuario" table="Usuarios">
+    
+	<id name="id" column="idUsuario" type="integer">
+	  <generator class="identity"/>
+	</id>
+
+  <property name="nombre"  column="nombre"  type="string"/>
+  <property name="apellido" column="apellido" type="string"/>
+  <property name="email"   column="email"   type="string"/>
+  <property name="direccion"   column="direccion"   type="string"/>
+	<property name="dni"   column="dni"   type="integer" unique="true" not-null="true"/>
+	<property name="estado"   column="estado"   type="boolean"/>
+	<property name="fechaAlta" column="fechaAlta" type="org.hibernate.type.LocalDateTimeType"/>
+
+  <joined-subclass name="datos.Cliente" table="clientes">
+    <key column="idCliente" />
+    <property column="nroCliente" name="nroCliente" type="integer" />
+  </joined-subclass>
+
+  <joined-subclass name="datos.Empleado" table="empleados">
+    <key column="idEmpleado" />
+    <property name="cuil"       column="cuil"       type="integer"/>
+    <property name="matricula"  column="matricula"  type="string"/>
+
+	<set name="lstEspecialidades" table="empleado_especialidad" cascade="all" lazy="false">
+	    <key column="empleado_id"/>
+	    <many-to-many class="datos.Especialidad" column="especialidad_id"/>
+	</set>
+  </joined-subclass>
+
+  </class>
+</hibernate-mapping>

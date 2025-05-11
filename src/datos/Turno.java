@@ -8,49 +8,96 @@ public class Turno {
 	private LocalDateTime fechaHora;
 	private boolean estado;
 	private String codigo;
+	private Servicio servicio;
 	private Cliente cliente;
-	private PuntoDeAtencion puntoDeAtencion;
+	private Empleado empleado;
+	private Sucursal sucursal;
+
+	public Turno(LocalDateTime fechaHora, boolean estado, String codigo,
+            Servicio servicio, Cliente cliente, Sucursal sucursal, Empleado empleado) {
+		   this.fechaHora = fechaHora;
+		   this.estado = estado;
+		   this.codigo = codigo;
+		   this.servicio = servicio;
+		   this.cliente = cliente;
+		   this.sucursal = sucursal;
+		   this.empleado = empleado;
+	}
 	
-	
+	public Turno(){
+		
+	}
+
 	public int getId() {
 		return id;
 	}
+
 	protected void setId(int id) {
 		this.id = id;
 	}
+
 	public LocalDateTime getFechaHora() {
 		return fechaHora;
 	}
+
 	public void setFechaHora(LocalDateTime fechaHora) {
 		this.fechaHora = fechaHora;
 	}
+
 	public boolean isEstado() {
 		return estado;
 	}
+
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+
 	public String getCodigo() {
 		return codigo;
 	}
+
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
+
+	public Servicio getServicio() {
+		return servicio;
+	}
+
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
+	}
+
 	public Cliente getCliente() {
 		return cliente;
 	}
+
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public PuntoDeAtencion getPuntoDeAtencion() {
-		return puntoDeAtencion;
+	
+	public Empleado getEmpleado() {
+	    return empleado;
 	}
-	public void setPuntoDeAtencion(PuntoDeAtencion puntoDeAtencion) {
-		this.puntoDeAtencion = puntoDeAtencion;
+
+	public void setEmpleado(Empleado empleado) {
+	    this.empleado = empleado;
 	}
-	
-	
-	
+
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
+	}
+
+	@Override
+	public String toString() {
+		return "Turno [id=" + id + ", fechaHora=" + fechaHora + ", estado=" + estado + ", codigo=" + codigo
+				+ ", servicio=" + servicio + ", cliente=" + cliente + ", empleado=" + empleado + ", sucursal="
+				+ sucursal + "]";
+	}	
 	
 
 }
