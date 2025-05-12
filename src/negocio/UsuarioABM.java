@@ -1,6 +1,5 @@
 package negocio;
 
-import datos.Turno;
 import datos.Usuario;
 import dao.UsuarioDao;
 

@@ -12,6 +12,8 @@ public class TestSistema {
 	public static void main(String[] args) {
 		System.out.println("=== INICIO DE PRUEBAS MANUALES ===");
 
+		LocalDate today = LocalDate.now(); // Fecha base dinámica
+
 		// Instancias ABM
 		ClienteABM clienteABM = new ClienteABM();
 		EmpleadoABM empleadoABM = new EmpleadoABM();
@@ -21,7 +23,7 @@ public class TestSistema {
 		TurnoABM turnoABM = new TurnoABM();
 		DiasDeAtencionABM diasABM = new DiasDeAtencionABM();
 		EstablecimientoABM establecimientoABM = new EstablecimientoABM();
-        UsuarioABM usuarioABM = new UsuarioABM();
+		UsuarioABM usuarioABM = new UsuarioABM();
 
 		// Alta Sucursal y Establecimiento
 		Time apertura = Time.valueOf("08:00:00");
@@ -69,11 +71,11 @@ public class TestSistema {
 		Servicio s3 = servicioABM.altaServicio("Consulta Neurológica", 40);
 
 		// Turnos
-		Turno t1 = turnoABM.altaTurno(LocalDateTime.now().plusDays(1).withHour(9), true, "T001", s1, c1, e1, suc);
+		Turno t1 = turnoABM.altaTurno(today.plusDays(1).atTime(9, 0), true, "T001", s1, c1, e1, suc);
 		@SuppressWarnings("unused")
-		Turno t2 = turnoABM.altaTurno(LocalDateTime.now().plusDays(2).withHour(10), true, "T002", s2, c2, e2, suc);
+		Turno t2 = turnoABM.altaTurno(today.plusDays(2).atTime(10, 0), true, "T002", s2, c2, e2, suc);
 		@SuppressWarnings("unused")
-		Turno t3 = turnoABM.altaTurno(LocalDateTime.now().plusDays(3).withHour(11), true, "T003", s3, c3, e3, suc);
+		Turno t3 = turnoABM.altaTurno(today.plusDays(3).atTime(11, 0), true, "T003", s3, c3, e3, suc);
 
 		// === MODIFICACIONES ===
 		System.out.println("\n=== MODIFICACIONES ===");
@@ -190,21 +192,42 @@ public class TestSistema {
 			System.out.println("No se encontró empleado con ese CUIL");
 		}
 
-        // 4. Buscar Usuarios creados en una fecha activos/inactivos
-        List<Usuario> usuarios = usuarioABM.obtenerUsuariosPorFecha(LocalDate.now(), true);
-		System.out.println("Usuarios creados el: " + LocalDate.now() + ": " + usuarios);
+		System.out.println("\n=== CONSULTA ENTRE INTERVALOS DE FECHAS ===");
 
-        // 5. Buscar Usuarios creados entre fechas
-		usuarios = usuarioABM.obtenerUsuariosPorRangoFechas(LocalDate.now(), LocalDate.now());
-		System.out.println("Usuarios creados entre: " + LocalDate.now() + " y " + LocalDate.now() + ": " + usuarios);
+		// 4. Buscar Usuarios creados en una fecha activos/inactivos
+		List<Usuario> usuarios = usuarioABM.obtenerUsuariosPorFecha(today, true);
+		System.out.println("Usuarios creados el " + today + ": " + usuarios);
 
-        // 6. Buscar Turnos en una fecha activos/cancelados
-		List<Turno> turnos = turnoABM.obtenerTurnosPorFecha(LocalDate.of(2025, 5, 12), false);
-		System.out.println("Turnos del: " + LocalDate.of(2025, 5, 12) + ": " + turnos);
+		// 5. Buscar Usuarios creados entre fechas
+		usuarios = usuarioABM.obtenerUsuariosPorRangoFechas(today, today);
+		System.out.println("Usuarios creados entre " + today + " y " + today + ": " + usuarios);
 
-        // 7. Buscar Turnos entre dos fechas
+		// 6. Buscar Turnos en una fecha activos/cancelados
+		List<Turno> turnos = turnoABM.obtenerTurnosPorRangoFechas(today.plusDays(2), today.plusDays(3));
+		System.out.println("Turnos entre " + today.plusDays(2) + " y " + today.plusDays(3) + ": " + turnos);
+
+		// 7. Buscar Turnos entre dos fechas
 		turnos = turnoABM.obtenerTurnosPorRangoFechas(LocalDate.of(2025, 5, 13), LocalDate.of(2025, 5, 14));
-		System.out.println("Turnos entre: " + LocalDate.of(2025, 5, 13) + " y " + LocalDate.of(2025, 5, 14) + ": " + turnos);
+		System.out.println(
+				"Turnos entre: " + LocalDate.of(2025, 5, 13) + " y " + LocalDate.of(2025, 5, 14) + ": " + turnos);
+
+		System.out.println("\n=== CONSULTAS POR FECHA Y ATRIBUTO DE CLASE ===");
+
+		// 1. Turnos por Fecha y Sucursal
+		System.out.println("Turnos del " + today.plusDays(1) + " en sucursal " + suc.getDireccion() + ":");
+		turnoABM.traerTurnosPorFechaYSucursal(today.plusDays(1), suc.getId()).forEach(System.out::println);
+
+		// 2. Turnos por Fecha y Servicio
+		System.out.println("Turnos del " + today.plusDays(1) + " para servicio " + s1.getNombreServicio() + ":");
+		turnoABM.traerTurnosPorFechaYServicio(today.plusDays(1), s1.getId()).forEach(System.out::println);
+
+		// 3. Turnos por Fecha y Cliente
+		System.out.println("Turnos del " + today.plusDays(1) + " para cliente " + c1.getNombre() + ":");
+		turnoABM.traerTurnosPorFechaYCliente(today.plusDays(1), c1.getId()).forEach(System.out::println);
+
+		// 4. Turnos por Fecha y Empleado
+		System.out.println("Turnos del " + today.plusDays(1) + " para empleado " + e1.getNombre() + ":");
+		turnoABM.traerTurnosPorFechaYEmpleado(today.plusDays(1), e1.getId()).forEach(System.out::println);
 
 		// DESCONMENTAR SI SE QUIERE TESTEAR / LOS DEMAS METODOS DE BAJA SE ENCUENTRAN
 		// EN SUS CLASES

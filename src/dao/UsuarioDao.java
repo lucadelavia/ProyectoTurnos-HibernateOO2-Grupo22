@@ -3,15 +3,12 @@ package dao;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.ArrayList;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import org.hibernate.query.Query;
 
-import datos.Turno;
 import datos.Usuario;
 
 public class UsuarioDao {
