@@ -174,7 +174,7 @@ public class TurnoDao {
         return turnos;
     }
 
-    public List<Turno> obtenerTurnosPorFecha(LocalDate fecha) {
+    public List<Turno> obtenerTurnosPorFecha(LocalDate fecha, boolean estado) {
         List<Turno> turnos = null;
         try {
             iniciaOperacion();
@@ -187,10 +187,11 @@ public class TurnoDao {
                     "LEFT JOIN FETCH s.lstDiasDeAtencion " +
                     "JOIN FETCH t.empleado e " +
                     "LEFT JOIN FETCH e.lstEspecialidades " +
-                    "WHERE t.fechaHora >= :inicio AND t.fechaHora < :fin";
+                    "WHERE t.fechaHora >= :inicio AND t.fechaHora < :fin AND t.estado = :estado";
             Query<Turno> query = session.createQuery(hql, Turno.class)
                 .setParameter("inicio", inicio)
-                .setParameter("fin", fin);
+                .setParameter("fin", fin)
+				.setParameter("estado", estado);;
             turnos = query.getResultList();
         } catch (HibernateException he) {
             manejaExcepcion(he);

@@ -72,8 +72,8 @@ public class TurnoABM {
         return turnos;
         }
 
-    public List<Turno> obtenerTurnosPorFecha(LocalDate fecha){
-        List<Turno> turnos = turnoDao.obtenerTurnosPorFecha(fecha);
+    public List<Turno> obtenerTurnosPorFecha(LocalDate fecha, boolean estado){
+        List<Turno> turnos = turnoDao.obtenerTurnosPorFecha(fecha, estado);
         if(turnos == null){
             throw new IllegalArgumentException("ERROR: No hay turnos en esta fecha: " + fecha);
         }
