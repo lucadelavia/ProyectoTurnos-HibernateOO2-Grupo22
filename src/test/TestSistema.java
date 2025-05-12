@@ -4,7 +4,9 @@ import negocio.*;
 import datos.*;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class TestSistema {
 	public static void main(String[] args) {
@@ -19,6 +21,7 @@ public class TestSistema {
 		TurnoABM turnoABM = new TurnoABM();
 		DiasDeAtencionABM diasABM = new DiasDeAtencionABM();
 		EstablecimientoABM establecimientoABM = new EstablecimientoABM();
+        UsuarioABM usuarioABM = new UsuarioABM();
 
 		// Alta Sucursal y Establecimiento
 		Time apertura = Time.valueOf("08:00:00");
@@ -186,6 +189,22 @@ public class TestSistema {
 		} catch (Exception e) {
 			System.out.println("No se encontró empleado con ese CUIL");
 		}
+
+        // 4. Buscar Usuarios creados en una fecha activos/inactivos
+        List<Usuario> usuarios = usuarioABM.obtenerUsuariosPorFecha(LocalDate.now(), true);
+		System.out.println("Usuarios creados el: " + LocalDate.now() + ": " + usuarios);
+
+        // 5. Buscar Usuarios creados entre fechas
+		usuarios = usuarioABM.obtenerUsuariosPorRangoFechas(LocalDate.now(), LocalDate.now());
+		System.out.println("Usuarios creados entre: " + LocalDate.now() + " y " + LocalDate.now() + ": " + usuarios);
+
+        // 6. Buscar Turnos en una fecha activos/cancelados
+		List<Turno> turnos = turnoABM.obtenerTurnosPorFecha(LocalDate.of(2025, 5, 12), false);
+		System.out.println("Turnos del: " + LocalDate.of(2025, 5, 12) + ": " + turnos);
+
+        // 7. Buscar Turnos entre dos fechas
+		turnos = turnoABM.obtenerTurnosPorRangoFechas(LocalDate.of(2025, 5, 13), LocalDate.of(2025, 5, 14));
+		System.out.println("Turnos entre: " + LocalDate.of(2025, 5, 13) + " y " + LocalDate.of(2025, 5, 14) + ": " + turnos);
 
 		// DESCONMENTAR SI SE QUIERE TESTEAR / LOS DEMAS METODOS DE BAJA SE ENCUENTRAN
 		// EN SUS CLASES
