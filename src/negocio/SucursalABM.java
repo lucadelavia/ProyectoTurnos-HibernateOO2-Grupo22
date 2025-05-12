@@ -6,6 +6,7 @@ import datos.Especialidad;
 import dao.SucursalDao;
 
 import java.sql.Time;
+import java.util.List;
 
 public class SucursalABM {
 	
@@ -130,6 +131,10 @@ public class SucursalABM {
 	    } else {
 	        System.out.println("La sucursal no tiene esa especialidad.");
 	    }
+	}
+	
+	public List<Sucursal> traerSucursales() {
+	    return sucursalDao.traerTodos();
 	}
     
 }

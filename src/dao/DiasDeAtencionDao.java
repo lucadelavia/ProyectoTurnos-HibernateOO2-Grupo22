@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -34,6 +36,18 @@ public class DiasDeAtencionDao {
         return id;
     }
 
+    public List<DiasDeAtencion> traerTodos() {
+        List<DiasDeAtencion> lista = null;
+        try {
+            iniciaOperacion();
+            lista = session.createQuery("FROM DiasDeAtencion", DiasDeAtencion.class).list();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+
+    
     public void actualizar(DiasDeAtencion objeto) {
         try {
             iniciaOperacion();

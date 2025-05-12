@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -46,6 +48,36 @@ public class ClienteDao{
 		return objeto;
 	}
 
+    public List<Cliente> traerTodos() {
+        List<Cliente> lista = null;
+        try {
+            iniciaOperacion();
+            lista = session.createQuery("FROM Cliente", Cliente.class).list();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    public Cliente traerPorNroCliente(int nroCliente) {
+        iniciaOperacion();
+        Cliente c = session.createQuery("FROM Cliente c WHERE c.nroCliente = :nro", Cliente.class)
+            .setParameter("nro", nroCliente)
+            .uniqueResult();
+        session.close();
+        return c;
+    }
+    
+    public List<Cliente> traerClientesConNroMayorA(int limite) {
+        iniciaOperacion();
+        List<Cliente> lista = session.createQuery(
+            "FROM Cliente c WHERE c.nroCliente > :limite", Cliente.class)
+            .setParameter("limite", limite)
+            .list();
+        session.close();
+        return lista;
+    }
+    
 	public void actualizar(Cliente objeto) {
 		try {
 			iniciaOperacion();

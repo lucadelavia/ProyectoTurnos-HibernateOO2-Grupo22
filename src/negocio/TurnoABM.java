@@ -88,5 +88,23 @@ public class TurnoABM {
         return turnos;
         }
 
+    public List<Turno> traerTurnos() {
+        return turnoDao.traerTodos();
+    }
+    
+    public List<Turno> obtenerTurnosPorCliente(int idCliente) {
+        return turnoDao.traerPorCliente(idCliente);
+    }
+
+    public List<Turno> obtenerTurnosPorEmpleado(int idEmpleado) {
+        return turnoDao.traerPorEmpleado(idEmpleado);
+    }
+
+    public List<Turno> obtenerTurnosPorServicio(int idServicio) {
+        return turnoDao.traerPorServicio(idServicio);
+    }
+
+    
+    
 }
 

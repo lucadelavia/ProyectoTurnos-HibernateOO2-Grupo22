@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -69,6 +71,18 @@ public class SucursalDao {
             session.close();
         }
         return sucursal;
+    }
+    
+    public List<Sucursal> traerTodos() {
+        List<Sucursal> lista = null;
+        try {
+            iniciaOperacion();
+            String hql = "SELECT DISTINCT s FROM Sucursal s LEFT JOIN FETCH s.lstDiasDeAtencion";
+            lista = session.createQuery(hql, Sucursal.class).getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
     }
     
     public void actualizar(Sucursal objeto) {
