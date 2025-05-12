@@ -104,6 +104,21 @@ public class TurnoABM {
         return turnoDao.traerPorServicio(idServicio);
     }
 
+    public List<Turno> traerTurnosPorFechaYSucursal(LocalDate fecha, int idSucursal) {
+        return turnoDao.traerTurnosPorFechaYSucursal(fecha, idSucursal);
+    }
+
+    public List<Turno> traerTurnosPorFechaYServicio(LocalDate fecha, int idServicio) {
+        return turnoDao.traerTurnosPorFechaYServicio(fecha, idServicio);
+    }
+
+    public List<Turno> traerTurnosPorFechaYCliente(LocalDate fecha, int idCliente) {
+        return turnoDao.traerTurnosPorFechaYCliente(fecha, idCliente);
+    }
+
+    public List<Turno> traerTurnosPorFechaYEmpleado(LocalDate fecha, int idEmpleado) {
+        return turnoDao.traerTurnosPorFechaYEmpleado(fecha, idEmpleado);
+    }
     
     
 }
