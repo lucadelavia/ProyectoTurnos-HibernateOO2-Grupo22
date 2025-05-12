@@ -1,6 +1,8 @@
 package negocio;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 import dao.ClienteDao;
 
 import datos.Cliente;
@@ -62,6 +64,20 @@ public class ClienteABM {
 		
 		return actual;
 	}
+	
+	public List<Cliente> traerClientes() {
+	    return clienteDao.traerTodos();
+	}
+	
+	public Cliente traerClienteNroCliente(int nroCliente) {
+	    Cliente c = clienteDao.traerPorNroCliente(nroCliente);
+	    if (c == null) {
+	        throw new IllegalArgumentException("No se encontró cliente con nroCliente: " + nroCliente);
+	    }
+	    return c;
+	}
+
+	
 
 //    public void elegirSucursal(int idCliente, int idSucursal);
 //    public void elegirEspecialidad(int idCliente, int idEspecialidad);

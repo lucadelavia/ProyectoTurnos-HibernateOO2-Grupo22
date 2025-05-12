@@ -4,267 +4,225 @@ import negocio.*;
 import datos.*;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class TestSistema {
-    public static void main(String[] args) {
-        System.out.println("=== INICIO DE PRUEBAS MANUALES ===");
+	public static void main(String[] args) {
+		System.out.println("=== INICIO DE PRUEBAS MANUALES ===");
 
-        // Instancias ABM
-        ClienteABM clienteABM = new ClienteABM();
-        EmpleadoABM empleadoABM = new EmpleadoABM();
-        EspecialidadABM especialidadABM = new EspecialidadABM();
-        ServicioABM servicioABM = new ServicioABM();
-        SucursalABM sucursalABM = new SucursalABM();
-        TurnoABM turnoABM = new TurnoABM();
-        DiasDeAtencionABM diasABM = new DiasDeAtencionABM();
-        EstablecimientoABM establecimientoABM = new EstablecimientoABM();
+		// Instancias ABM
+		ClienteABM clienteABM = new ClienteABM();
+		EmpleadoABM empleadoABM = new EmpleadoABM();
+		EspecialidadABM especialidadABM = new EspecialidadABM();
+		ServicioABM servicioABM = new ServicioABM();
+		SucursalABM sucursalABM = new SucursalABM();
+		TurnoABM turnoABM = new TurnoABM();
+		DiasDeAtencionABM diasABM = new DiasDeAtencionABM();
+		EstablecimientoABM establecimientoABM = new EstablecimientoABM();
+        UsuarioABM usuarioABM = new UsuarioABM();
 
-        // Alta Sucursal y Establecimiento
-        Time apertura = Time.valueOf("08:00:00");
-        Time cierre = Time.valueOf("16:00:00");
-        Sucursal suc = sucursalABM.altaSucursal("Mitre 123", "1122334455", apertura, cierre, 10);
-        DiasDeAtencion dia = diasABM.altaDiaDeAtencion("Lunes");
-        sucursalABM.asociarDiaDeAtencion(suc.getId(), dia.getId());
-        Establecimiento est = establecimientoABM.altaEstablecimiento("Clínica Norte", "20-12345678-9", "San Martín 456", "Clínica general");
-        establecimientoABM.asociarSucursalAEstablecimiento(est.getId(), suc.getId());
+		// Alta Sucursal y Establecimiento
+		Time apertura = Time.valueOf("08:00:00");
+		Time cierre = Time.valueOf("16:00:00");
+		Sucursal suc = sucursalABM.altaSucursal("Mitre 123", "1122334455", apertura, cierre, 10);
+		DiasDeAtencion dia = diasABM.altaDiaDeAtencion("Lunes");
+		sucursalABM.asociarDiaDeAtencion(suc.getId(), dia.getId());
+		Establecimiento est = establecimientoABM.altaEstablecimiento("Clínica Norte", "20-12345678-9", "San Martín 456",
+				"Clínica general");
+		establecimientoABM.asociarSucursalAEstablecimiento(est.getId(), suc.getId());
 
-        // Especialidades
-        Especialidad esp1 = especialidadABM.altaEspecialidad(new Especialidad("Cardiología"));
-        Especialidad esp2 = especialidadABM.altaEspecialidad(new Especialidad("Dermatología"));
-        Especialidad esp3 = especialidadABM.altaEspecialidad(new Especialidad("Neurología"));
+		// Especialidades
+		Especialidad esp1 = especialidadABM.altaEspecialidad(new Especialidad("Cardiología"));
+		Especialidad esp2 = especialidadABM.altaEspecialidad(new Especialidad("Dermatología"));
+		Especialidad esp3 = especialidadABM.altaEspecialidad(new Especialidad("Neurología"));
 
-        sucursalABM.asociarEspecialidad(suc.getId(), esp1);
-        sucursalABM.asociarEspecialidad(suc.getId(), esp2);
-        sucursalABM.asociarEspecialidad(suc.getId(), esp3);
+		sucursalABM.asociarEspecialidad(suc.getId(), esp1);
+		sucursalABM.asociarEspecialidad(suc.getId(), esp2);
+		sucursalABM.asociarEspecialidad(suc.getId(), esp3);
 
-        // Clientes
-        Cliente c1 = clienteABM.altaCliente("Juan", "Perez", "juan@mail.com", "Calle 1", 10000001, true, LocalDateTime.now(), 1);
-        Cliente c2 = clienteABM.altaCliente("Maria", "Lopez", "maria@mail.com", "Calle 2", 10000002, true, LocalDateTime.now(), 2);
-        Cliente c3 = clienteABM.altaCliente("Carlos", "Diaz", "carlos@mail.com", "Calle 3", 10000003, true, LocalDateTime.now(), 3);
+		// Clientes
+		Cliente c1 = clienteABM.altaCliente("Juan", "Perez", "juan@mail.com", "Calle 1", 10000001, true,
+				LocalDateTime.now(), 1);
+		Cliente c2 = clienteABM.altaCliente("Maria", "Lopez", "maria@mail.com", "Calle 2", 10000002, true,
+				LocalDateTime.now(), 2);
+		Cliente c3 = clienteABM.altaCliente("Carlos", "Diaz", "carlos@mail.com", "Calle 3", 10000003, true,
+				LocalDateTime.now(), 3);
 
-        // Empleados
-        Empleado e1 = empleadoABM.altaEmpleado("Ana", "Torres", "ana@mail.com", "Calle 4", 20000001, true, LocalDateTime.now(), 201000001, "MAT-A");
-        Empleado e2 = empleadoABM.altaEmpleado("Luis", "Mendez", "luis@mail.com", "Calle 5", 20000002, true, LocalDateTime.now(), 201000002, "MAT-B");
-        Empleado e3 = empleadoABM.altaEmpleado("Laura", "Fernandez", "laura@mail.com", "Calle 6", 20000003, true, LocalDateTime.now(), 201000003, "MAT-C");
+		// Empleados
+		Empleado e1 = empleadoABM.altaEmpleado("Ana", "Torres", "ana@mail.com", "Calle 4", 20000001, true,
+				LocalDateTime.now(), 201000001, "MAT-A");
+		Empleado e2 = empleadoABM.altaEmpleado("Luis", "Mendez", "luis@mail.com", "Calle 5", 20000002, true,
+				LocalDateTime.now(), 201000002, "MAT-B");
+		Empleado e3 = empleadoABM.altaEmpleado("Laura", "Fernandez", "laura@mail.com", "Calle 6", 20000003, true,
+				LocalDateTime.now(), 201000003, "MAT-C");
 
-        // Asignar especialidades a empleados
-        empleadoABM.asignarEspecialidad(e1.getId(), esp1);
-        empleadoABM.asignarEspecialidad(e2.getId(), esp2);
-        empleadoABM.asignarEspecialidad(e3.getId(), esp3);
+		// Asignar especialidades a empleados
+		empleadoABM.asignarEspecialidad(e1.getId(), esp1);
+		empleadoABM.asignarEspecialidad(e2.getId(), esp2);
+		empleadoABM.asignarEspecialidad(e3.getId(), esp3);
 
-        // Servicios
-        Servicio s1 = servicioABM.altaServicio("Consulta Cardiológica", 30);
-        Servicio s2 = servicioABM.altaServicio("Consulta Dermatológica", 25);
-        Servicio s3 = servicioABM.altaServicio("Consulta Neurológica", 40);
+		// Servicios
+		Servicio s1 = servicioABM.altaServicio("Consulta Cardiológica", 30);
+		Servicio s2 = servicioABM.altaServicio("Consulta Dermatológica", 25);
+		Servicio s3 = servicioABM.altaServicio("Consulta Neurológica", 40);
 
-        // Turnos
-        Turno t1 = turnoABM.altaTurno(LocalDateTime.now().plusDays(1).withHour(9), true, "T001", s1, c1, e1, suc);
-        @SuppressWarnings("unused")
+		// Turnos
+		Turno t1 = turnoABM.altaTurno(LocalDateTime.now().plusDays(1).withHour(9), true, "T001", s1, c1, e1, suc);
+		@SuppressWarnings("unused")
 		Turno t2 = turnoABM.altaTurno(LocalDateTime.now().plusDays(2).withHour(10), true, "T002", s2, c2, e2, suc);
-        @SuppressWarnings("unused")
+		@SuppressWarnings("unused")
 		Turno t3 = turnoABM.altaTurno(LocalDateTime.now().plusDays(3).withHour(11), true, "T003", s3, c3, e3, suc);
 
-        // === MODIFICACIONES ===
-        System.out.println("\n=== MODIFICACIONES ===");
+		// === MODIFICACIONES ===
+		System.out.println("\n=== MODIFICACIONES ===");
 
-        // Cliente
-        c1.setDireccion("Nueva Dirección 123");
-        clienteABM.modificarCliente(c1);
-        System.out.println("Cliente modificado: " + c1.getNombre() + " -> " + c1.getDireccion());
+		// Cliente
+		c1.setDireccion("Nueva Dirección 123");
+		clienteABM.modificarCliente(c1);
+		System.out.println("Cliente modificado: " + c1.getNombre() + " -> " + c1.getDireccion());
 
-        // Empleado
-        e1.setEmail("nuevo.email@clinica.com");
-        empleadoABM.modificarEmpleado(e1);
-        System.out.println("Empleado modificado: " + e1.getNombre() + " -> " + e1.getEmail());
+		// Empleado
+		e1.setEmail("nuevo.email@clinica.com");
+		empleadoABM.modificarEmpleado(e1);
+		System.out.println("Empleado modificado: " + e1.getNombre() + " -> " + e1.getEmail());
 
-        // Especialidad
-        esp1.setNombre("Cardiología Avanzada");
-        especialidadABM.modificarEspecialidad(esp1);
-        System.out.println("Especialidad modificada: " + esp1.getNombre());
+		// Especialidad
+		esp1.setNombre("Cardiología Avanzada");
+		especialidadABM.modificarEspecialidad(esp1);
+		System.out.println("Especialidad modificada: " + esp1.getNombre());
 
-        // Servicio
-        s1.setNombreServicio("Consulta Cardiológica Pro");
-        s1.setDuracion(45);
-        servicioABM.modificarServicio(s1);
-        System.out.println("Servicio modificado: " + s1.getNombreServicio() + " - " + s1.getDuracion() + " min");
+		// Servicio
+		s1.setNombreServicio("Consulta Cardiológica Pro");
+		s1.setDuracion(45);
+		servicioABM.modificarServicio(s1);
+		System.out.println("Servicio modificado: " + s1.getNombreServicio() + " - " + s1.getDuracion() + " min");
 
-        // Sucursal
-        suc.setTelefono("999999999");
-        sucursalABM.modificarSucursal(suc);
-        System.out.println("Sucursal modificada: nuevo teléfono " + suc.getTelefono());
+		// Sucursal
+		suc.setTelefono("999999999");
+		sucursalABM.modificarSucursal(suc);
+		System.out.println("Sucursal modificada: nuevo teléfono " + suc.getTelefono());
 
-        // Establecimiento
-        est.setDescripcion("Clínica integral con atención 24 hs");
-        establecimientoABM.modificarEstablecimiento(est);
-        System.out.println("Establecimiento modificado: " + est.getDescripcion());
+		// Establecimiento
+		est.setDescripcion("Clínica integral con atención 24 hs");
+		establecimientoABM.modificarEstablecimiento(est);
+		System.out.println("Establecimiento modificado: " + est.getDescripcion());
 
-        // Turno
-        t1.setCodigo("T001-EDIT");
-        t1.setEstado(false);
-        turnoABM.modificarServicio(t1);
-        System.out.println("Turno modificado: código " + t1.getCodigo() + ", estado " + t1.isEstado());
+		// Turno
+		t1.setCodigo("T001-EDIT");
+		t1.setEstado(false);
+		turnoABM.modificarServicio(t1);
+		System.out.println("Turno modificado: código " + t1.getCodigo() + ", estado " + t1.isEstado());
 
-        // Día de atención
-        dia.setNombre("Lunes extendido");
-        diasABM.modificarDiaDeAtencion(dia);
-        System.out.println("Día de atención modificado: " + dia.getNombre());
-        
-        // System.out.println("\n=== BAJAS ===");
+		// Día de atención
+		dia.setNombre("Lunes extendido");
+		diasABM.modificarDiaDeAtencion(dia);
+		System.out.println("Día de atención modificado: " + dia.getNombre());
 
-        // // 1. Turno (se debe eliminar antes que cliente/empleado/sucursal/servicio)
-        // turnoABM.bajaTurno(t3);
-        // System.out.println("Turno dado de baja: " + t3.getCodigo());
+		System.out.println("\n=== CONSULTA GENERAL DE TODAS LAS ENTIDADES ===");
 
-        // // 2. Eliminar cliente
-        // clienteABM.bajaCliente(c3.getId());
-        // System.out.println("Cliente dado de baja: " + c3.getNombre());
+		System.out.println("Clientes:");
+		clienteABM.traerClientes().forEach(System.out::println);
 
+		System.out.println("Empleados:");
+		empleadoABM.traerEmpleados().forEach(System.out::println);
 
-        System.out.println("\n=== FIN DE PRUEBAS ===");
-    }
+		System.out.println("Especialidades:");
+		especialidadABM.traerEspecialidades().forEach(System.out::println);
+
+		System.out.println("Servicios:");
+		servicioABM.traerServicios().forEach(System.out::println);
+
+		System.out.println("Sucursales:");
+		sucursalABM.traerSucursales().forEach(System.out::println);
+
+		System.out.println("Establecimientos:");
+		establecimientoABM.traerEstablecimientos().forEach(System.out::println);
+
+		System.out.println("Días de Atención:");
+		diasABM.traerDiasDeAtencion().forEach(System.out::println);
+
+		System.out.println("Turnos:");
+		turnoABM.traerTurnos().forEach(System.out::println);
+
+		System.out.println("\n=== CONSULTAS POR OBJETO ===");
+
+		// Turnos por Cliente
+		System.out.println("Turnos del cliente " + c1.getNombre() + ":");
+		turnoABM.obtenerTurnosPorCliente(c1.getId()).forEach(System.out::println);
+
+		// Turnos por Empleado
+		System.out.println("Turnos del empleado " + e1.getNombre() + ":");
+		turnoABM.obtenerTurnosPorEmpleado(e1.getId()).forEach(System.out::println);
+
+		// Turnos por Sucursal
+		System.out.println("Turnos en la sucursal " + suc.getDireccion() + ":");
+		turnoABM.obtenerTurnosPorSucursal(suc.getId()).forEach(System.out::println);
+
+		// Turnos por Servicio
+		System.out.println("Turnos para el servicio " + s1.getNombreServicio() + ":");
+		turnoABM.obtenerTurnosPorServicio(s1.getId()).forEach(System.out::println);
+
+		System.out.println("\n=== CONSULTAS POR ATRIBUTOS DE LA SUBCLASE ===");
+
+		// 1. Buscar cliente por número de cliente
+		try {
+			Cliente clientePorNro = clienteABM.traerClienteNroCliente(c1.getNroCliente());
+			System.out.println("Cliente por nroCliente: " + clientePorNro);
+		} catch (Exception e) {
+			System.out.println("No se encontró cliente con ese nroCliente");
+		}
+
+		// 2. Buscar empleado por matrícula
+		try {
+			Empleado empPorMatricula = empleadoABM.obtenerEmpleadoPorMatricula(e1.getMatricula());
+			System.out.println("Empleado por matrícula: " + empPorMatricula);
+		} catch (Exception e) {
+			System.out.println("No se encontró empleado con esa matrícula");
+		}
+
+		// 3. Buscar empleado por CUIL
+		try {
+			Empleado empPorCuil = empleadoABM.obtenerEmpleadoPorCuil(e1.getCuil());
+			System.out.println("Empleado por CUIL: " + empPorCuil);
+		} catch (Exception e) {
+			System.out.println("No se encontró empleado con ese CUIL");
+		}
+
+        // 4. Buscar Usuarios creados en una fecha activos/inactivos
+        List<Usuario> usuarios = usuarioABM.obtenerUsuariosPorFecha(LocalDate.now(), true);
+		System.out.println("Usuarios creados el: " + LocalDate.now() + ": " + usuarios);
+
+        // 5. Buscar Usuarios creados entre fechas
+		usuarios = usuarioABM.obtenerUsuariosPorRangoFechas(LocalDate.now(), LocalDate.now());
+		System.out.println("Usuarios creados entre: " + LocalDate.now() + " y " + LocalDate.now() + ": " + usuarios);
+
+        // 6. Buscar Turnos en una fecha activos/cancelados
+		List<Turno> turnos = turnoABM.obtenerTurnosPorFecha(LocalDate.of(2025, 5, 12), false);
+		System.out.println("Turnos del: " + LocalDate.of(2025, 5, 12) + ": " + turnos);
+
+        // 7. Buscar Turnos entre dos fechas
+		turnos = turnoABM.obtenerTurnosPorRangoFechas(LocalDate.of(2025, 5, 13), LocalDate.of(2025, 5, 14));
+		System.out.println("Turnos entre: " + LocalDate.of(2025, 5, 13) + " y " + LocalDate.of(2025, 5, 14) + ": " + turnos);
+
+		// DESCONMENTAR SI SE QUIERE TESTEAR / LOS DEMAS METODOS DE BAJA SE ENCUENTRAN
+		// EN SUS CLASES
+		// === BAJAS ===
+//        System.out.println("\n=== BAJAS ===");
+//
+//     // 1. Eliminar turno
+//        turnoABM.bajaTurno(t3);
+//        System.out.println("Turno dado de baja: " + t3.getCodigo());
+//
+//        // 2. Eliminar servicio
+//        servicioABM.bajaServicio(s3);
+//        System.out.println("Servicio dado de baja: " + s3.getNombreServicio());
+//
+//        // 3. Eliminar cliente
+//        clienteABM.bajaCliente(c3.getId());
+//        System.out.println("Cliente dado de baja: " + c3.getNombre());
+
+		System.out.println("\n=== FIN DE PRUEBAS ===");
+	}
 }
-
-    	
-//        UsuarioABM usuarioABM = new UsuarioABM();
-//
-//        Usuario usuario = usuarioABM.altaUsuario(
-//            "Luca", 
-//            "De la Via", 
-//            "luca.dlv@example.com", 
-//            "Av. Siempre Viva 742", 
-//            38123456
-//        );
-//        System.out.println("Usuario creado: " + usuario);
-//
-//        Usuario porId = usuarioABM.obtenerUsuarioPorId(usuario.getId());
-//        System.out.println("Recuperado por ID: " + porId);
-//
-//        Usuario porDni = usuarioABM.obtenerUsuarioPorDNI(usuario.getDni());
-//        System.out.println("Recuperado por DNI: " + porDni);
-//
-//        Usuario porEmail = usuarioABM.obtenerUsuarioPorEmail(usuario.getEmail());
-//        System.out.println("Recuperado por email: " + porEmail);
-//
-//        usuario.setDireccion("Calle Real 1234");
-//        Usuario modificado = usuarioABM.modificarUsuario(usuario);
-//        System.out.println("Usuario modificado: " + modificado);
-//
-//        EspecialidadABM abm = new EspecialidadABM();
-//
-//        Especialidad e = new Especialidad("Cardiología");
-//        e = abm.altaEspecialidad(e);
-//        System.out.println("Especialidad creada: " + e);
-//
-//        Especialidad porId1 = abm.obtenerEspecialidadPorId(e.getId());
-//        System.out.println("Recuperado por ID: " + porId1);
-//
-//        Especialidad porNombre = abm.obtenerEspecialidadPorNombre("Cardiología");
-//        System.out.println("Recuperado por nombre: " + porNombre);
-//
-////        e.setNombre("Neurología");
-////        Especialidad mod = abm.modificarEspecialidad(e);
-////        System.out.println("Especialidad modificada: " + mod);
-//        
-//        EmpleadoABM empleadoABM = new EmpleadoABM();
-//
-//        Especialidad esp1 = abm.obtenerEspecialidadPorNombre("Cardiología");
-//        if (esp1 == null) {
-//            esp1 = abm.altaEspecialidad(new Especialidad("Cardiología"));
-//            System.out.println("Especialidad creada: " + esp1);
-//        }
-// 
-//        Especialidad esp2 = abm.altaEspecialidad(new Especialidad("Pediatría"));
-//        System.out.println("Especialidad creada: " + esp2);
-//
-//        Empleado empleado = new Empleado(
-//            "María",
-//            "López",
-//            "maria.lopez@example.com",
-//            "Calle Salud 789",
-//            40999888,              // DNI
-//            true,                  // estado
-//            java.time.LocalDateTime.now(), // fechaAlta
-//            272223334,             // CUIL
-//            "MAT5678"              // Matrícula
-//        );
-//
-//        empleado.getLstEspecialidades().add(esp1);
-//        empleado.getLstEspecialidades().add(esp2);
-//
-//        empleado = empleadoABM.altaEmpleado(empleado);
-//        System.out.println("Empleado creado con especialidades: " + empleado);
-//
-//        ServicioABM servicioABM = new ServicioABM();
-//        Servicio servicio = servicioABM.altaServicio("Atencion Medica", 1);
-//        System.out.println("Servicio Creado: " + servicio);
-//
-//        servicio.setDuracion(2);
-//        Servicio servicio_modificado = servicioABM.modificarServicio(servicio);
-//        System.out.println("Servicio modificado: " + servicio_modificado);
-//
-//        
-////        abm.bajaEspecialidad(mod.getId());
-////        System.out.println("Especialidad eliminada con ID: " + mod.getId());
-//        
-//        EstablecimientoABM establecimientoABM = new EstablecimientoABM();
-//
-//        Establecimiento est = establecimientoABM.altaEstablecimiento(
-//            "Supermercado Central",
-//            "20-12345678-9",
-//            "Av. Siempre Viva 247",
-//            "Supermercado de barrio"
-//        );
-//        System.out.println("Establecimiento creado: " + est);
-//        
-//        est.setNombre("Supermercado Norte");
-//        est.setDireccion("Av. Siempre Viva 248");
-//        est.setDescripcion("Nuevo supermercado de barrio");
-//
-//        Establecimiento estModificado = establecimientoABM.modificarEstablecimiento(est);
-//        System.out.println("Establecimiento modificado: " + estModificado);
-//        
-//        SucursalABM sucursalABM = new SucursalABM();
-//        
-//        Sucursal suc = sucursalABM.altaSucursal(
-//                "Av. Oeste 500", 
-//                "3811234567", 
-//                Time.valueOf("09:00:00"),  
-//                Time.valueOf("18:00:00"),
-//                3
-//            );
-//        System.out.println("Sucursal: " + suc);
-//        
-//        establecimientoABM.asociarSucursalAEstablecimiento(est.getId(), suc.getId());
-//        
-//        Sucursal sucRecuperada = sucursalABM.traer(suc.getId());
-//        System.out.println("Establecimiento con sucursal asociada: " + sucRecuperada.getEstablecimiento());
-//        
-//        suc.setDireccion("Av. Este 500");
-//        Sucursal sucModificada = sucursalABM.modificarSucursal(suc);
-//        System.out.println("Sucursal modificada: " + sucModificada);
-//        
-//        establecimientoABM.removerSucursalDeEstablecimiento(est.getId(), suc.getId());
-//        Establecimiento estSinSucursal = establecimientoABM.traer(est.getId());
-//        System.out.println("Establecimiento sin sucursal: " + estSinSucursal);
-//        Sucursal sucDesasociada = sucursalABM.traer(suc.getId());
-//        System.out.println("Sucursal: " + sucDesasociada);
-//        
-//        DiasDeAtencionABM diasDeAtencionABM = new DiasDeAtencionABM();
-//
-//        DiasDeAtencion dia1 = diasDeAtencionABM.altaDiaDeAtencion("Lunes");
-//        System.out.println("Dia de atencion creado: " + dia1);
-//
-//        dia1.setNombre("Martes");
-//        DiasDeAtencion diaModificado = diasDeAtencionABM.modificarDiaDeAtencion(dia1);
-//        System.out.println("Dia de atencion modificado: " + diaModificado);
-//        
-//        sucursalABM.asociarDiaDeAtencion(suc.getId(), dia1.getId());
-//        Sucursal sucursalConDia = sucursalABM.traer(suc.getId());
-//        System.out.println("Sucursal con dia de atencion asociado: " + sucursalConDia);
-//        
-//        sucursalABM.removerDiaDeAtencion(suc.getId(), dia1.getId());
-//        Sucursal sucursalSinDia = sucursalABM.traer(suc.getId());
-//        System.out.println("Sucursal despues de remover dia de atencion: " + sucursalSinDia);
-//    }
-//}

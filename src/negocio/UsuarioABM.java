@@ -1,9 +1,12 @@
 package negocio;
 
+import datos.Turno;
 import datos.Usuario;
 import dao.UsuarioDao;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class UsuarioABM {
 
@@ -99,4 +102,20 @@ public class UsuarioABM {
         
         return u;
     }
+
+    public List<Usuario> obtenerUsuariosPorFecha(LocalDate fecha, Boolean estado){
+        List<Usuario> usuarios = usuarioDao.obtenerUsuariosPorFecha(fecha, estado);
+        if(usuarios == null){
+            throw new IllegalArgumentException("ERROR: No hay usuarios creados en esta fecha: " + fecha);
+        }
+        return usuarios;
+        }
+
+    public List<Usuario> obtenerUsuariosPorRangoFechas(LocalDate desde, LocalDate hasta){
+        List<Usuario> usuarios = usuarioDao.obtenerUsuariosPorRangoFechas(desde, hasta);
+        if(usuarios == null){
+            throw new IllegalArgumentException("ERROR: No hay usuarios creados en estas fechas: " + desde + " " + hasta);
+        }
+        return usuarios;
+        }
 }

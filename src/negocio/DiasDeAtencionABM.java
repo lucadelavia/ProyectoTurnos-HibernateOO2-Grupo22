@@ -1,6 +1,9 @@
 package negocio;
 
 import datos.DiasDeAtencion;
+
+import java.util.List;
+
 import dao.DiasDeAtencionDao;
 
 public class DiasDeAtencionABM {
@@ -47,4 +50,9 @@ public class DiasDeAtencionABM {
         }
         return dia;
     }
+    
+    public List<DiasDeAtencion> traerDiasDeAtencion() {
+        return diasDeAtencionDao.traerTodos();
+    }
+    
 }

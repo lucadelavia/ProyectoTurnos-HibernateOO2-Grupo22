@@ -53,6 +53,82 @@ public class TurnoDao {
         return objeto;
     }
 
+    public List<Turno> traerTodos() {
+        List<Turno> lista = null;
+        try {
+            iniciaOperacion();
+            String hql = "SELECT DISTINCT t FROM Turno t " +
+                         "LEFT JOIN FETCH t.cliente " +
+                         "LEFT JOIN FETCH t.empleado " +
+                         "LEFT JOIN FETCH t.sucursal s " +
+                         "LEFT JOIN FETCH s.lstDiasDeAtencion " +
+                         "LEFT JOIN FETCH t.servicio";
+            lista = session.createQuery(hql, Turno.class).getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+
+    public List<Turno> traerPorCliente(int idCliente) {
+        iniciaOperacion();
+        List<Turno> lista = session.createQuery(
+            "FROM Turno t " +
+            "JOIN FETCH t.cliente " +
+            "JOIN FETCH t.empleado " +
+            "JOIN FETCH t.sucursal " +
+            "LEFT JOIN FETCH t.servicio " +
+            "WHERE t.cliente.id = :idCliente", Turno.class)
+            .setParameter("idCliente", idCliente).list();
+        session.close();
+        return lista;
+    }
+
+    public List<Turno> traerPorEmpleado(int idEmpleado) {
+        iniciaOperacion();
+        List<Turno> lista = session.createQuery(
+            "FROM Turno t " +
+            "JOIN FETCH t.cliente " +
+            "JOIN FETCH t.empleado e " +
+            "JOIN FETCH t.sucursal " +
+            "LEFT JOIN FETCH t.servicio " +
+            "LEFT JOIN FETCH e.lstEspecialidades " +
+            "WHERE e.id = :idEmpleado", Turno.class)
+            .setParameter("idEmpleado", idEmpleado).list();
+        session.close();
+        return lista;
+    }
+
+    public List<Turno> traerPorSucursal(int idSucursal) {
+        iniciaOperacion();
+        List<Turno> lista = session.createQuery(
+            "FROM Turno t " +
+            "JOIN FETCH t.cliente " +
+            "JOIN FETCH t.empleado " +
+            "JOIN FETCH t.sucursal s " +
+            "LEFT JOIN FETCH t.servicio " +
+            "LEFT JOIN FETCH s.lstDiasDeAtencion " +
+            "WHERE s.id = :idSucursal", Turno.class)
+            .setParameter("idSucursal", idSucursal).list();
+        session.close();
+        return lista;
+    }
+
+    public List<Turno> traerPorServicio(int idServicio) {
+        iniciaOperacion();
+        List<Turno> lista = session.createQuery(
+            "FROM Turno t " +
+            "JOIN FETCH t.cliente " +
+            "JOIN FETCH t.empleado " +
+            "JOIN FETCH t.sucursal " +
+            "JOIN FETCH t.servicio s " +
+            "WHERE s.id = :idServicio", Turno.class)
+            .setParameter("idServicio", idServicio).list();
+        session.close();
+        return lista;
+    }
+
+
     public void actualizar(Turno objeto) {
         try {
             iniciaOperacion();
@@ -98,7 +174,7 @@ public class TurnoDao {
         return turnos;
     }
 
-    public List<Turno> obtenerTurnosPorFecha(LocalDate fecha) {
+    public List<Turno> obtenerTurnosPorFecha(LocalDate fecha, boolean estado) {
         List<Turno> turnos = null;
         try {
             iniciaOperacion();
@@ -111,10 +187,11 @@ public class TurnoDao {
                     "LEFT JOIN FETCH s.lstDiasDeAtencion " +
                     "JOIN FETCH t.empleado e " +
                     "LEFT JOIN FETCH e.lstEspecialidades " +
-                    "WHERE t.fechaHora >= :inicio AND t.fechaHora < :fin";
+                    "WHERE t.fechaHora >= :inicio AND t.fechaHora < :fin AND t.estado = :estado";
             Query<Turno> query = session.createQuery(hql, Turno.class)
                 .setParameter("inicio", inicio)
-                .setParameter("fin", fin);
+                .setParameter("fin", fin)
+				.setParameter("estado", estado);;
             turnos = query.getResultList();
         } catch (HibernateException he) {
             manejaExcepcion(he);

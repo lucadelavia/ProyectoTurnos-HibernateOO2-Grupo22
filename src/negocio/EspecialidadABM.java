@@ -1,6 +1,9 @@
 package negocio;
 
 import datos.Especialidad;
+
+import java.util.List;
+
 import dao.EspecialidadDao;
 
 
@@ -69,6 +72,12 @@ public class EspecialidadABM {
         
         return e;
     	
+    }
+    
+    public List<Especialidad> traerEspecialidades() {
+    	
+        return especialidadDao.traerTodos();
+    
     }
     
 }

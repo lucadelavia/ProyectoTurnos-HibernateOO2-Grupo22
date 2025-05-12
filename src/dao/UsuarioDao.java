@@ -1,9 +1,17 @@
 package dao;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.ArrayList;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import org.hibernate.query.Query;
+
+import datos.Turno;
 import datos.Usuario;
 
 public class UsuarioDao {
@@ -100,4 +108,47 @@ public class UsuarioDao {
 		}
 	}
 	
+    public List<Usuario> obtenerUsuariosPorFecha(LocalDate fecha, boolean estado) {
+        List<Usuario> usuarios = null;
+        try {
+            iniciaOperacion();
+            LocalDateTime inicio = fecha.atStartOfDay();
+            LocalDateTime fin = fecha.plusDays(1).atStartOfDay();
+            String hql = "SELECT DISTINCT u FROM Usuario u " +
+                    "WHERE u.fechaAlta >= :inicio AND u.fechaAlta < :fin AND u.estado = :estado";
+            Query<Usuario> query = session.createQuery(hql, Usuario.class)
+                .setParameter("inicio", inicio)
+                .setParameter("fin", fin)
+                .setParameter("estado", estado);
+            usuarios = query.getResultList();
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
+            session.close();
+        }
+        return usuarios;
+    }
+
+    public List<Usuario> obtenerUsuariosPorRangoFechas(LocalDate desde, LocalDate hasta) {
+        List<Usuario> usuarios = null;
+        try {
+            iniciaOperacion();
+            LocalDateTime inicio = desde.atStartOfDay();
+            LocalDateTime fin = hasta.plusDays(1).atStartOfDay();
+            String hql = "SELECT DISTINCT u FROM Usuario u " +
+                    "WHERE u.fechaAlta >= :inicio AND u.fechaAlta < :fin";
+            Query<Usuario> query = session.createQuery(hql, Usuario.class)
+                .setParameter("inicio", inicio)
+                .setParameter("fin", fin);
+            usuarios = query.getResultList();
+        } catch (HibernateException he) {
+            manejaExcepcion(he);
+            throw he;
+        } finally {
+            session.close();
+        }
+        return usuarios;
+    }
+
 }

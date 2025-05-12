@@ -4,6 +4,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.List;
+
 import datos.Especialidad;
 
 public class EspecialidadDao {
@@ -58,6 +60,17 @@ public class EspecialidadDao {
             session.close();
         }
         return e;
+    }
+    
+    public List<Especialidad> traerTodos() {
+        List<Especialidad> lista = null;
+        try {
+            iniciaOperacion();
+            lista = session.createQuery("FROM Especialidad", Especialidad.class).list();
+        } finally {
+            session.close();
+        }
+        return lista;
     }
     
 	public void actualizar(Especialidad objeto) {

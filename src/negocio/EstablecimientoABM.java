@@ -2,6 +2,9 @@ package negocio;
 
 import datos.Establecimiento;
 import datos.Sucursal;
+
+import java.util.List;
+
 import dao.EstablecimientoDao;
 
 public class EstablecimientoABM {
@@ -99,4 +102,9 @@ public class EstablecimientoABM {
 	    }
 	    establecimientoDao.removerSucursal(est, suc);
 	}
+    
+    public List<Establecimiento> traerEstablecimientos() {
+        return establecimientoDao.traerTodos();
+    }
+    
 }

@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -86,6 +88,21 @@ public class EstablecimientoDao {
         return est;
     }
 
+    public List<Establecimiento> traerTodos() {
+        List<Establecimiento> lista = null;
+        try {
+            iniciaOperacion();
+            String hql = "SELECT DISTINCT e FROM Establecimiento e " +
+                         "LEFT JOIN FETCH e.sucursales s " +
+                         "LEFT JOIN FETCH s.lstDiasDeAtencion";
+            lista = session.createQuery(hql, Establecimiento.class).getResultList();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+
+    
 	public void actualizar(Establecimiento objeto) {
 		try {
 			iniciaOperacion();

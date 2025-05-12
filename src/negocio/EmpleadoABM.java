@@ -4,6 +4,7 @@ import datos.Empleado;
 import datos.Especialidad;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import dao.EmpleadoDao;
 import dao.EspecialidadDao;
@@ -93,6 +94,17 @@ public class EmpleadoABM {
 		
 	}
 	
+	public Empleado obtenerEmpleadoPorMatricula(String matricula) {
+		
+	    Empleado e = empleadoDao.traerPorMatricula(matricula);
+	    
+	    if (e == null) {
+	        throw new IllegalArgumentException("No existe un empleado con esa matrícula");
+	    }
+	    
+	    return e;
+	}
+	
 	public void asignarEspecialidad(int idEmpleado, Especialidad esp) {
 		
 		Empleado e = empleadoDao.traer(idEmpleado);
@@ -122,5 +134,13 @@ public class EmpleadoABM {
 	    empleadoDao.actualizar(e);
 		
 	}
+	
+	public List<Empleado> traerEmpleados() {
+	    return empleadoDao.traerTodos();
+	}
+
+
+
+
 
 }

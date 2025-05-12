@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -55,7 +57,7 @@ public class EmpleadoDao {
         try {
             iniciaOperacion();
             empleado = (Empleado) session
-                .createQuery("FROM Empleado WHERE dni = :d")
+            	.createQuery("FROM Empleado e LEFT JOIN FETCH e.lstEspecialidades WHERE e.dni = :d")
                 .setParameter("d", dni)
                 .uniqueResult();
         } finally {
@@ -69,7 +71,7 @@ public class EmpleadoDao {
         try {
             iniciaOperacion();
             empleado = (Empleado) session
-                .createQuery("FROM Empleado WHERE cuil = :c")
+                .createQuery("FROM Empleado e LEFT JOIN FETCH e.lstEspecialidades WHERE cuil = :c")
                 .setParameter("c", cuil)
                 .uniqueResult();
         } finally {
@@ -78,6 +80,43 @@ public class EmpleadoDao {
         return empleado;
     }
     
+    public List<Empleado> traerTodos() {
+        List<Empleado> lista = null;
+        try {
+            iniciaOperacion();
+            lista = session.createQuery("FROM Empleado", Empleado.class).list();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    public List<Empleado> traerPorEspecialidad(String nombreEsp) {
+        iniciaOperacion();
+        List<Empleado> lista = session.createQuery(
+            "SELECT DISTINCT e FROM Empleado e " +
+            "JOIN e.lstEspecialidades esp " +
+            "WHERE esp.nombre = :nombre", Empleado.class)
+            .setParameter("nombre", nombreEsp)
+            .list();
+        session.close();
+        return lista;
+    }
+
+    public Empleado traerPorMatricula(String matricula) {
+        Empleado empleado = null;
+        try {
+            iniciaOperacion();
+            empleado = session
+                .createQuery("FROM Empleado e WHERE e.matricula = :matricula", Empleado.class)
+                .setParameter("matricula", matricula)
+                .uniqueResult();
+        } finally {
+            session.close();
+        }
+        return empleado;
+    }
+
 	public void actualizar(Empleado objeto) {
 		try {
 			iniciaOperacion();

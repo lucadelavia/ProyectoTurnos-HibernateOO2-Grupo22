@@ -1,6 +1,9 @@
 package negocio;
 
 import datos.Servicio;
+
+import java.util.List;
+
 import dao.ServicioDao;
 
 public class ServicioABM {
@@ -60,4 +63,9 @@ public class ServicioABM {
         
         return actual;
     }
+    
+    public List<Servicio> traerServicios() {
+        return servicioDao.traerTodos();
+    }
+    
 }
